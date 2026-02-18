@@ -14,7 +14,7 @@ const Navbar = () => {
               {item}
             </a>
           </li>
-        ))}
+        ))}zzz
       </ul>
       <div className="nav-toggle" onClick={() => setOpen(!open)}>
         {open ? "✕" : "☰"}
