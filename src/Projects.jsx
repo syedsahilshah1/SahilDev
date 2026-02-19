@@ -11,7 +11,7 @@ const projects = [
   {
     name: "Smart AI",
     description: "An AI-powered application built with modern technologies.",
-    link: "https://smartai-opal.vercel.app/",
+    link: "https://smartai-hx1y.vercel.app/",
     github: "https://github.com/syedsahilshah1/smartai"
   },
   {
@@ -19,7 +19,20 @@ const projects = [
     description: "A comprehensive dashboard for administration and management.",
     link: "https://github.com/syedsahilshah1/superadmin-dashboard",
     github: "https://github.com/syedsahilshah1/superadmin-dashboard"
+  },
+  {
+    name: "e-commerce-ecosystem",
+    description: "A comprehensive e-commerce ecosystem built with modern technologies.",
+    link: "https://github.com/syedsahilshah1/e-commerce-ecosystem",
+    github: "https://github.com/syedsahilshah1/e-commerce-ecosystem"
+  },
+   {
+    name: "doctor-appointment",
+    description: "A comprehensive doctor appointment booking system built with modern technologies.",
+    link: "https://github.com/syedsahilshah1/doctor-appointment",
+    github: "https://github.com/syedsahilshah1/doctor-appointment"
   }
+
 ];
 
 const Projects = () => (
