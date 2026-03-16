@@ -6,7 +6,13 @@ const projects = [
     name: "Digital Kohat",
     description: "A digital platform for Kohat city.",
     link: "https://digital-kohat.vercel.app/",
-    github: "https://github.com/Humnaa-Nadeem/Digital-Kohat"
+    github: "private"
+  },
+  {
+    name: "job-portal",
+    description: "A job portal for connecting job seekers with employers.",
+    link: "https://jobsdaily.pk/",
+    github: "private"
   },
   {
     name: "Smart AI",
@@ -21,12 +27,18 @@ const projects = [
     github: "https://github.com/syedsahilshah1/superadmin-dashboard"
   },
   {
+    name: "Rescue-1122-Kohat-Division-Prototype",
+    description: "A comprehensive dashboard for administration and management.",
+    link: "https://rescue-1122-kohat-division-prototyp.vercel.app/",
+    github: "https://github.com/syedsahilshah1/-Rescue-1122-Kohat-Division-Prototype"
+  },
+  {
     name: "e-commerce-ecosystem",
     description: "A comprehensive e-commerce ecosystem built with modern technologies.",
     link: "https://github.com/syedsahilshah1/e-commerce-ecosystem",
     github: "https://github.com/syedsahilshah1/e-commerce-ecosystem"
   },
-   {
+  {
     name: "doctor-appointment",
     description: "A comprehensive doctor appointment booking system built with modern technologies.",
     link: "https://github.com/syedsahilshah1/doctor-appointment",

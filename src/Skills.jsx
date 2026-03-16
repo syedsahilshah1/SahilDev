@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 
-const skills = ["HTML", "CSS", "JavaScript", "ReactJS", "PHP", "Laravel", "MySQL", "OOPS"];
+const skills = ["HTML", "CSS", "JavaScript", "ReactJS", "PHP", "Laravel", "MySQL", "OOP","Nodejs","Expressjs","MongoDB","Git","GitHub"];
 
 const Skills = () => (
   <section id="skills">
