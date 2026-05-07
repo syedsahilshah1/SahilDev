@@ -5,7 +5,7 @@ const projects = [
   {
     name: "Digital Kohat",
     description: "A digital platform for Kohat city.",
-    link: "https://digital-kohat.vercel.app/",
+    link: "https://kohat.online/",
     github: "private"
   },
   {
@@ -44,7 +44,30 @@ const projects = [
     link: "https://github.com/syedsahilshah1/doctor-appointment",
     github: "https://github.com/syedsahilshah1/doctor-appointment"
   }
-
+  , {
+    name: "POS-mart ",
+    description: "A comprehensive point-of-sale system for managing retail operations.",
+    link: "https://github.com/syedsahilshah1/POS-mart",
+    github: "https://github.com/syedsahilshah1/POS-mart"
+  },
+   {
+    name: "PK-IT-Jobs",
+    description: "A comprehensive SAAS system for PAK IT JOB.",
+    link: "https://github.com/syedsahilshah1/PK-IT-Jobs",
+    github: "https://github.com/syedsahilshah1/PK-IT-Jobs"
+  },
+  {
+    name: "SahilDev-HRM-",
+    description: "A HRM for managing employees.",
+    link: "https://sahil-dev-hrm.vercel.app/",
+    github: "https://github.com/syedsahilshah1/SahilDev-HRM-"
+  },
+  {
+    name: "AIHealthCare",
+    description: "A Ai Based health care system for Pakiatan.",
+    link: "https://aihealthnavigate.lovable.app/",
+    github: "https://github.com/syedsahilshah1/AIHealthCare"
+  }
 ];
 
 const Projects = () => (

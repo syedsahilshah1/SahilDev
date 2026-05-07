@@ -3,7 +3,7 @@ import "./App.css";
 
 const Footer = () => (
   <footer>
-    &copy; {new Date().getFullYear()} SAHIL.DEV. All rights reserved.
+    &copy; {new Date().getFullYear()} SAHILDEV. All rights reserved.
   </footer>
 );
 

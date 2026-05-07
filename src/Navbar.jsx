@@ -6,7 +6,7 @@ const Navbar = () => {
 
   return (
     <nav>
-      <div className="logo">SAHIL.DEV</div>
+      <div className="logo" onClick={"#"}>SAHILDEV</div>
       <ul className={open ? "active" : ""}>
         {["Home", "About", "Skills", "Projects", "Experience", "Contact"].map(item => (
           <li key={item}>

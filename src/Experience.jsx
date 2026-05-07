@@ -3,7 +3,7 @@ import "./App.css";
 
 const stats = [
     { label: "Years Experience", value: "1+" },
-    { label: "Projects Completed", value: "10+" },
+    { label: "Projects Completed", value: "20+" },
     { label: "Happy Clients", value: "4+" },
     { label: "Coffee Consumed", value: "∞" },
 ];
