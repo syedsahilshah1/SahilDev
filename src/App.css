@@ -8,6 +8,7 @@
   --text-muted: #94a3b8;
   --glass-border: rgba(255, 255, 255, 0.1);
   --gradient-main: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  --adsense-top-offset: 0px;
 }
 
 * {
@@ -50,9 +51,9 @@ nav {
   border-bottom: 1px solid var(--glass-border);
   position: fixed;
   width: 100%;
-  top: 0;
+  top: var(--adsense-top-offset, 0px);
   z-index: 1000;
-  transition: all 0.3s ease;
+  transition: top 0.3s ease, background 0.3s ease;
 }
 
 nav .logo {
