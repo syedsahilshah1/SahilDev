@@ -1,0 +1,17 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Security rules for the project requests collection
+    match /orders/{orderId} {
+      // Anyone can submit a project request
+      allow create: if request.resource.data.name != null &&
+                      request.resource.data.email != null &&
+                      request.resource.data.projectType in ['student', 'planned', 'maintenance'] &&
+                      request.resource.data.status == 'Pending';
+      
+      // Only authenticated admin can read, search, update or delete orders
+      allow read, update, delete: if request.auth != null;
+    }
+  }
+}
