@@ -6,7 +6,8 @@ import Skills from "./Skills";
 import Projects from "./Projects";
 import Services from "./Services";
 import ProjectRequest from "./ProjectRequest";
-import Experience from "./Experience"; // Import Experience
+import Experience from "./Experience";
+import HireMe from "./HireMe";
 import Contact from "./Contact";
 import Footer from "./Footer";
 import AdminDashboard from "./AdminDashboard";
@@ -90,6 +91,7 @@ function App() {
       <Services onSelectService={handleSelectService} />
       <ProjectRequest preselectedType={selectedService} />
       <Experience />
+      <HireMe />
       <Contact />
       <Footer />
     </>

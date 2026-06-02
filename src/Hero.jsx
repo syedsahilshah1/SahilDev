@@ -14,7 +14,7 @@ const Hero = () => {
           </p>
           <div className="hero-buttons">
             <a href="#projects" className="btn-primary">View My Work</a>
-            <a href="#contact" className="btn-primary" style={{ background: 'rgba(255,255,255,0.05)', boxShadow: 'none', border: '1px solid var(--glass-border)' }}>Contact Me</a>
+            <a href="#hire-me" className="btn-primary" style={{ background: 'rgba(255,255,255,0.05)', boxShadow: 'none', border: '1px solid var(--glass-border)' }}>Hire Me</a>
           </div>
         </div>
         <div className="hero-image-container animate" style={{ animationDelay: '0.2s' }}>

@@ -8,9 +8,9 @@ const Navbar = () => {
     <nav>
       <div className="logo" onClick={"#"}>SAHILDEV</div>
       <ul className={open ? "active" : ""}>
-        {["Home", "About", "Skills", "Projects", "Services", "Experience", "Contact"].map(item => (
+        {["Home", "About", "Skills", "Projects", "Services", "Experience", "Hire Me", "Contact"].map(item => (
           <li key={item}>
-            <a href={`#${item.toLowerCase()}`} onClick={() => setOpen(false)}>
+            <a href={`#${item.toLowerCase().replace(/\s+/g, "-")}`} onClick={() => setOpen(false)}>
               {item}
             </a>
           </li>
