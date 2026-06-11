@@ -20,18 +20,7 @@ const projects = [
     link: "https://smartai-hx1y.vercel.app/",
     github: "https://github.com/syedsahilshah1/smartai"
   },
-  {
-    name: "Superadmin Dashboard",
-    description: "A comprehensive dashboard for administration and management.",
-    link: "https://github.com/syedsahilshah1/superadmin-dashboard",
-    github: "https://github.com/syedsahilshah1/superadmin-dashboard"
-  },
-  {
-    name: "Rescue-1122-Kohat-Division-Prototype",
-    description: "A comprehensive dashboard for administration and management.",
-    link: "https://rescue-1122-kohat-division-prototyp.vercel.app/",
-    github: "https://github.com/syedsahilshah1/-Rescue-1122-Kohat-Division-Prototype"
-  },
+
   {
     name: "e-commerce-ecosystem",
     description: "A comprehensive e-commerce ecosystem built with modern technologies.",
@@ -50,7 +39,7 @@ const projects = [
     link: "https://github.com/syedsahilshah1/POS-mart",
     github: "https://github.com/syedsahilshah1/POS-mart"
   },
-   {
+  {
     name: "PK-IT-Jobs",
     description: "A comprehensive SAAS system for PAK IT JOB.",
     link: "https://github.com/syedsahilshah1/PK-IT-Jobs",
@@ -63,11 +52,37 @@ const projects = [
     github: "https://github.com/syedsahilshah1/SahilDev-HRM-"
   },
   {
+    name: "SRMS",
+    description: "A Student Record Management System for managing students.",
+    link: "https://student-record-management-system-iota.vercel.app/",
+    github: "https://github.com/syedsahilshah1/Student-record-management-system-"
+  },
+  {
     name: "AIHealthCare",
     description: "A Ai Based health care system for Pakiatan.",
     link: "https://aihealthnavigate.lovable.app/",
     github: "https://github.com/syedsahilshah1/AIHealthCare"
-  }
+  },
+  {
+    name: "SIM (smart installment management)",
+    description: "A Smart Installment Management system for managing installments.",
+    link: "https://github.com/syedsahilshah1/SIM",
+    github: "https://github.com/syedsahilshah1/SIM",
+  },
+
+  {
+    name: "Superadmin Dashboard",
+    description: "A comprehensive dashboard for administration and management.",
+    link: "https://github.com/syedsahilshah1/superadmin-dashboard",
+    github: "https://github.com/syedsahilshah1/superadmin-dashboard"
+  },
+  {
+    name: "Rescue-1122-Kohat-Division-Prototype",
+    description: "A comprehensive dashboard for administration and management.",
+    link: "https://rescue-1122-kohat-division-prototyp.vercel.app/",
+    github: "https://github.com/syedsahilshah1/-Rescue-1122-Kohat-Division-Prototype"
+  },
+
 ];
 
 const Projects = () => (
