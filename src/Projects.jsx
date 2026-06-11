@@ -28,12 +28,23 @@ const projects = [
     github: "https://github.com/syedsahilshah1/e-commerce-ecosystem"
   },
   {
-    name: "doctor-appointment",
+    name: "Doctor's Appointment",
     description: "A comprehensive doctor appointment booking system built with modern technologies.",
     link: "https://github.com/syedsahilshah1/doctor-appointment",
     github: "https://github.com/syedsahilshah1/doctor-appointment"
-  }
-  , {
+  },
+  {
+    name: "SmartAI Travel Planner (FYP)",
+    description: "An AI-powered travel planning platform built as a Final Year Project to generate personalized itineraries.",
+    link: "https://github.com/syedsahilshah1/SmartAI-travel-planner",
+    github: "https://github.com/syedsahilshah1/SmartAI-travel-planner"
+  },
+  {
+    name: "Digital Smart Cities Hub (KIC)",
+    description: "A smart cities hub platform developed for city administration and information management.",
+    link: "https://github.com/syedsahilshah1/Digital-Smart-Cities-Hub",
+    github: "https://github.com/syedsahilshah1/Digital-Smart-Cities-Hub"
+  }, {
     name: "POS-mart ",
     description: "A comprehensive point-of-sale system for managing retail operations.",
     link: "https://github.com/syedsahilshah1/POS-mart",
