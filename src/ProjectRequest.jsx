@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { db } from "./firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import emailjs from '@emailjs/browser';
 import "./App.css";
 
 const AVAILABLE_TECH = [
@@ -83,6 +84,27 @@ const ProjectRequest = ({ preselectedType }) => {
 
       await addDoc(collection(db, "orders"), orderData);
 
+      // Send automated email via EmailJS
+      try {
+        await emailjs.send(
+          "service_jsu4x3j", // TODO: Replace with your EmailJS Service ID
+          "template_x7vwy0s", // TODO: Replace with your EmailJS Template ID
+          {
+            to_name: formData.name,
+            to_email: formData.email,
+            project_type: formData.projectType,
+            budget: formData.budget,
+            deadline: formData.deadline,
+            description: formData.description,
+            tech_stack: orderData.selectedCriteria.join(", ")
+          },
+          "8fReEdGMIoOmTf3C8" // TODO: Replace with your EmailJS Public Key
+        );
+      } catch (emailErr) {
+        console.error("EmailJS sending failed: ", emailErr);
+        // Optional: you can show an error here, but the order is still saved to Firestore
+      }
+
       setSuccess(true);
       setFormData({
         name: "",
@@ -144,7 +166,7 @@ const ProjectRequest = ({ preselectedType }) => {
                         type="radio"
                         name="projectType"
                         checked={formData.projectType === type.id}
-                        onChange={() => {}}
+                        onChange={() => { }}
                         style={{ display: "none" }}
                       />
                       <span className="radio-circle"></span>

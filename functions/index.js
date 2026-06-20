@@ -5,10 +5,9 @@ const nodemailer = require("nodemailer");
 admin.initializeApp();
 
 // Configure the SMTP transporter using secure environment configuration
-// Run this in terminal to set credentials:
-// firebase functions:config:set gmail.email="your-email@gmail.com" gmail.password="your-app-password"
-const gmailEmail = functions.config().gmail ? functions.config().gmail.email : null;
-const gmailPassword = functions.config().gmail ? functions.config().gmail.password : null;
+// The variables are now loaded from the functions/.env file
+const gmailEmail = process.env.GMAIL_EMAIL || null;
+const gmailPassword = process.env.GMAIL_PASSWORD || null;
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
