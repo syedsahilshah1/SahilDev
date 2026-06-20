@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { auth, db } from "./firebase";
-import { signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
+import { signInWithEmailAndPassword, signOut, onAuthStateChanged, sendPasswordResetEmail } from "firebase/auth";
 import { collection, query, orderBy, onSnapshot, updateDoc, doc } from "firebase/firestore";
 import "./App.css";
 
@@ -10,6 +10,8 @@ const AdminDashboard = () => {
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
   const [loginLoading, setLoginLoading] = useState(false);
+  const [resetMessage, setResetMessage] = useState("");
+  const [resetError, setResetError] = useState("");
 
   // Orders data
   const [orders, setOrders] = useState([]);
@@ -80,6 +82,23 @@ const AdminDashboard = () => {
       }
     } finally {
       setLoginLoading(false);
+    }
+  };
+
+  const handleForgotPassword = async () => {
+    if (!email.trim()) {
+      setResetError("Please enter your admin email first to reset password.");
+      setResetMessage("");
+      return;
+    }
+    try {
+      await sendPasswordResetEmail(auth, email);
+      setResetMessage("Password reset email sent! Check your inbox.");
+      setResetError("");
+    } catch (err) {
+      console.error("Password reset error: ", err);
+      setResetError("Failed to send reset email: " + err.message);
+      setResetMessage("");
     }
   };
 
@@ -226,9 +245,18 @@ const AdminDashboard = () => {
                 />
               </div>
 
+              {resetMessage && <div className="form-success" style={{color: '#4ade80', fontSize: '0.9rem', marginBottom: '1rem', textAlign: 'center'}}>{resetMessage}</div>}
+              {resetError && <div className="form-error" style={{color: '#f87171', fontSize: '0.9rem', marginBottom: '1rem', textAlign: 'center'}}>{resetError}</div>}
+
               <button type="submit" disabled={loginLoading} className="btn-primary login-btn">
                 {loginLoading ? "Verifying Credentials..." : "Authenticate Admin"}
               </button>
+
+              <div style={{textAlign: 'center', marginTop: '1rem'}}>
+                <button type="button" onClick={handleForgotPassword} style={{background: 'none', border: 'none', color: '#38bdf8', cursor: 'pointer', textDecoration: 'underline'}}>
+                  Forgot Password?
+                </button>
+              </div>
             </form>
           </div>
         </div>
