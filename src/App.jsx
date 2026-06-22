@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import Hero from "./Hero";
 import About from "./About";
 import Skills from "./Skills";
+
 import Projects from "./Projects";
 import Services from "./Services";
 import ProjectRequest from "./ProjectRequest";
@@ -68,9 +69,9 @@ function App() {
           <div style={{ fontSize: "1.5rem", fontWeight: "800", background: "var(--gradient-main)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", cursor: "pointer" }} onClick={() => window.location.hash = "#"}>
             SAHILDEV ADMIN
           </div>
-          <button 
-            onClick={() => window.location.hash = "#"} 
-            className="btn-primary" 
+          <button
+            onClick={() => window.location.hash = "#"}
+            className="btn-primary"
             style={{ padding: "0.6rem 1.2rem", fontSize: "0.85rem", background: "rgba(255,255,255,0.05)", border: "1px solid var(--glass-border)", boxShadow: "none" }}
           >
             ← Back to Portfolio
