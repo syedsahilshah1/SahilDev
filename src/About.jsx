@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 
+
 const About = () => (
   <section id="about">
     <div className="animate">
