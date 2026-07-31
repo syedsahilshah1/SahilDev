@@ -1,58 +1,119 @@
 import React from "react";
+import { Briefcase, GraduationCap, Award, Calendar, CheckCircle2, Building2 } from "lucide-react";
 import "./App.css";
 
 const stats = [
-    { label: "Years Experience", value: "2+" },
-    { label: "Projects Completed", value: "20+" },
-    { label: "Happy Clients", value: "4+" },
-    { label: "Coffee Consumed", value: "∞" },
+  { label: "Years Experience", value: "2+" },
+  { label: "Projects Completed", value: "20+" },
+  { label: "Live Client Platforms", value: "5+" },
+  { label: "Tech Stack Mastery", value: "10+" },
 ];
 
-const Experience = () => (
-    <section id="experience" style={{ background: 'rgba(30, 41, 59, 0.3)' }}>
-        <div className="animate">
-            <h2>Project Milestones</h2>
-            <div className="stats-grid" style={styles.statsGrid}>
-                {stats.map((stat, index) => (
-                    <div key={index} className="stat-card" style={styles.statCard}>
-                        <h3 style={styles.statValue}>{stat.value}</h3>
-                        <p style={styles.statLabel}>{stat.label}</p>
-                    </div>
-                ))}
-            </div>
-        </div>
-    </section>
-);
+const timelineEvents = [
+  {
+    type: "education",
+    icon: <GraduationCap size={20} />,
+    title: "BS Software Engineering",
+    period: "2022 - 2026",
+    organization: "Bachelor of Science in Software Engineering",
+    description: "Rigorous education in Object-Oriented Programming (OOP), Data Structures & Algorithms, Software Engineering Principles, Relational Databases, and Web Architecture.",
+    highlights: [
+      "Specialized in Full Stack Web Engineering",
+      "Developed AI-Powered Travel Planner as Final Year Project (FYP)",
+      "Strong academic & practical software development track record"
+    ]
+  },
+  {
+    type: "experience",
+    icon: <Briefcase size={20} />,
+    title: "Full Stack Developer — Digital Kohat",
+    period: "Nov 2025 - Jul 2026",
+    organization: "Digital Kohat Platform",
+    description: "Engineered and maintained the official Digital Kohat civic web platform, directory, and administrative management services.",
+    highlights: [
+      "Developed responsive PHP/Laravel & React portal architecture",
+      "Designed secure database management and municipal services directory",
+      "Optimized site loading speeds and cross-device responsiveness"
+    ]
+  },
+  {
+    type: "milestone",
+    icon: <Building2 size={20} />,
+    title: "Rescue 1122 Division Prototype",
+    period: "2024 - 2025",
+    organization: "Innovative Design Company",
+    description: "Developed operational dispatch and emergency station management prototype platforms at Innovative Design Company for Rescue 1122 Kohat Division.",
+    highlights: [
+      "Built real-time tracking dashboards for emergency dispatch monitoring",
+      "Created analytics widgets for station incident management"
+    ]
+  }
+];
 
-const styles = {
-    statsGrid: {
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-        gap: '2rem',
-        marginTop: '3rem',
-    },
-    statCard: {
-        background: 'var(--bg-card)',
-        padding: '2rem',
-        borderRadius: '1.5rem',
-        border: '1px solid var(--glass-border)',
-        textAlign: 'center',
-        transition: 'transform 0.3s ease',
-    },
-    statValue: {
-        fontSize: '2.5rem',
-        fontWeight: '800',
-        background: 'var(--gradient-main)',
-        WebkitBackgroundClip: 'text',
-        backgroundClip: 'text',
-        WebkitTextFillColor: 'transparent',
-        marginBottom: '0.5rem',
-    },
-    statLabel: {
-        fontSize: '1.1rem',
-        color: 'var(--text-muted)',
-        fontWeight: '600',
-    },
+const Experience = () => {
+  return (
+    <section id="experience" className="section-padding">
+      <div className="section-header">
+        <span className="section-subtitle-badge">Track Record & Milestones</span>
+        <h2 className="section-title">Experience & Education</h2>
+        <p className="section-intro">
+          Academic foundation in Software Engineering paired with hands-on web production experience.
+        </p>
+      </div>
+
+      {/* Stats Counter Bar */}
+      <div className="stats-grid-modern">
+        {stats.map((stat, index) => (
+          <div key={index} className="stat-card-modern">
+            <h3 className="stat-value">{stat.value}</h3>
+            <p className="stat-label">{stat.label}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* Timeline Section */}
+      <div className="timeline-container">
+        <h3 className="timeline-section-title">
+          <Calendar size={22} className="timeline-header-icon" />
+          <span>Engineering Timeline</span>
+        </h3>
+
+        <div className="timeline-list">
+          {timelineEvents.map((item, index) => (
+            <div key={index} className="timeline-item">
+              <div className="timeline-marker">
+                <div className="timeline-icon-badge">
+                  {item.icon}
+                </div>
+                {index < timelineEvents.length - 1 && <div className="timeline-connector"></div>}
+              </div>
+
+              <div className="timeline-content-card">
+                <div className="timeline-card-header">
+                  <div>
+                    <h4 className="timeline-item-title">{item.title}</h4>
+                    <span className="timeline-org">{item.organization}</span>
+                  </div>
+                  <span className="timeline-period">{item.period}</span>
+                </div>
+
+                <p className="timeline-description">{item.description}</p>
+
+                <div className="timeline-highlights">
+                  {item.highlights.map((h, i) => (
+                    <div key={i} className="timeline-highlight-bullet">
+                      <CheckCircle2 size={15} className="bullet-icon" />
+                      <span>{h}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default Experience;

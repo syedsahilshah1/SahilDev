@@ -1,35 +1,139 @@
-import React from "react";
+import React, { useState } from "react";
+import { Mail, Phone, Send, Copy, Check, MapPin } from "lucide-react";
 import "./App.css";
 
-
 const Contact = () => {
+  const [copiedEmail, setCopiedEmail] = useState(false);
+  const [copiedPhone, setCopiedPhone] = useState(false);
+
+  const emailText = "sahilkhan536ah@gmail.com";
+  const phoneText = "03410472229";
+
+  const copyToClipboard = (text, type) => {
+    navigator.clipboard.writeText(text);
+    if (type === "email") {
+      setCopiedEmail(true);
+      setTimeout(() => setCopiedEmail(false), 2000);
+    } else {
+      setCopiedPhone(true);
+      setTimeout(() => setCopiedPhone(false), 2000);
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const name = e.target.name.value;
     const email = e.target.email.value;
     const message = e.target.message.value;
 
-    // Constructing the mailto link
-    const subject = encodeURIComponent(`New Portfolio Message from ${name}`);
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+    const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
+    const body = encodeURIComponent(`Sender Name: ${name}\nSender Email: ${email}\n\nMessage Content:\n${message}`);
 
-    window.location.href = `mailto:sahilkhan536ah@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${emailText}?subject=${subject}&body=${body}`;
   };
 
   return (
-    <section id="contact">
-      <div className="animate">
-        <h2>Get In Touch</h2>
-        <div className="contact-info" style={{ textAlign: 'center', marginBottom: '3rem' }}>
-          <p style={{ fontSize: '1.2rem', color: 'var(--text-main)' }}>📧 sahilkhan536ah@gmail.com</p>
-          <p style={{ fontSize: '1.2rem', color: 'var(--text-main)', marginTop: '0.5rem' }}>📞 03410472229</p>
+    <section id="contact" className="section-padding">
+      <div className="section-header">
+        <span className="section-subtitle-badge">Get In Touch</span>
+        <h2 className="section-title">Let's Work Together</h2>
+        <p className="section-intro">
+          Whether you have an open remote role, freelance project, or technical question, feel free to reach out!
+        </p>
+      </div>
+
+      <div className="contact-grid">
+        {/* Contact Info Pills */}
+        <div className="contact-info-cards">
+          <div className="contact-card">
+            <div className="contact-card-icon">
+              <Mail size={22} />
+            </div>
+            <div className="contact-card-details">
+              <span className="contact-label">Email Address</span>
+              <span className="contact-val">{emailText}</span>
+            </div>
+            <button
+              onClick={() => copyToClipboard(emailText, "email")}
+              className="btn-copy-action"
+              title="Copy Email"
+            >
+              {copiedEmail ? <Check size={16} color="#10B981" /> : <Copy size={16} />}
+              <span>{copiedEmail ? "Copied!" : "Copy"}</span>
+            </button>
+          </div>
+
+          <div className="contact-card">
+            <div className="contact-card-icon">
+              <Phone size={22} />
+            </div>
+            <div className="contact-card-details">
+              <span className="contact-label">Phone & WhatsApp</span>
+              <span className="contact-val">{phoneText}</span>
+            </div>
+            <button
+              onClick={() => copyToClipboard(phoneText, "phone")}
+              className="btn-copy-action"
+              title="Copy Phone"
+            >
+              {copiedPhone ? <Check size={16} color="#10B981" /> : <Copy size={16} />}
+              <span>{copiedPhone ? "Copied!" : "Copy"}</span>
+            </button>
+          </div>
+
+          <div className="contact-card">
+            <div className="contact-card-icon">
+              <MapPin size={22} />
+            </div>
+            <div className="contact-card-details">
+              <span className="contact-label">Location</span>
+              <span className="contact-val">Pakistan (Remote Worldwide)</span>
+            </div>
+          </div>
         </div>
-        <form onSubmit={handleSubmit}>
-          <input type="text" name="name" placeholder="Your Name" required />
-          <input type="email" name="email" placeholder="Your Email" required />
-          <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-          <button type="submit">Send Message</button>
-        </form>
+
+        {/* Contact Form */}
+        <div className="contact-form-wrapper">
+          <form onSubmit={handleSubmit} className="contact-form-modern">
+            <div className="form-group">
+              <label htmlFor="name">Your Name</label>
+              <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                placeholder="John Doe" 
+                required 
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="email">Your Email</label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                placeholder="john@example.com" 
+                required 
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="message">Your Message</label>
+              <textarea 
+                id="message" 
+                name="message" 
+                rows="4" 
+                placeholder="Hi Sahil, I am reaching out regarding..." 
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" className="btn-send-contact">
+              <Send size={18} />
+              <span>Send Email Message</span>
+            </button>
+          </form>
+        </div>
       </div>
     </section>
   );

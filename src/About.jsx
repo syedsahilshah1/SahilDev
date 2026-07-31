@@ -1,14 +1,70 @@
 import React from "react";
+import { GraduationCap, Code, Cpu, ShieldCheck } from "lucide-react";
 import "./App.css";
 
+const highlightCards = [
+  {
+    icon: <GraduationCap size={28} />,
+    title: "Education & Degree",
+    description: "BS Software Engineer with strong theoretical and practical expertise in Object-Oriented Programming (OOP), Data Structures, Database Systems, and Web Engineering."
+  },
+  {
+    icon: <Code size={28} />,
+    title: "Full-Stack Proficiency",
+    description: "Experienced in building responsive React & Next.js client frontends coupled with scalable PHP & Laravel backend APIs and MySQL/Firebase databases."
+  },
+  {
+    icon: <Cpu size={28} />,
+    title: "Production Projects",
+    description: "Built and deployed over 20 projects, ranging from AI Travel Planners and SaaS Portals to City Management Hubs and E-commerce Ecosystems."
+  },
+  {
+    icon: <ShieldCheck size={28} />,
+    title: "Engineering Mindset",
+    description: "Dedicated to writing clean, maintainable code, adhering to software design patterns, and delivering polished, accessible user interfaces."
+  }
+];
 
 const About = () => (
-  <section id="about">
-    <div className="animate">
-      <h2>About Me</h2>
-      <p>
-        I'm Sahil, a **BS Software Engineer** and Full Stack Web Developer with expertise in building responsive web applications. I specialize in HTML, CSS, JavaScript, and ReactJS for the frontend, and PHP with Laravel and MySQL for the backend. I have a strong foundation in Object-Oriented Programming (OOPS) and enjoy creating high-quality, interactive user experiences.
+  <section id="about" className="section-padding">
+    <div className="section-header">
+      <span className="section-subtitle-badge">Get To Know Me</span>
+      <h2 className="section-title">About Me</h2>
+      <p className="section-intro">
+        Passionate Software Engineer dedicated to crafting robust web applications that solve real-world problems.
       </p>
+    </div>
+
+    <div className="about-content-grid">
+      <div className="about-bio-card">
+        <h3>Hello, I'm Sahil Syed</h3>
+        <p className="bio-paragraph">
+          I am a <strong>BS Software Engineer</strong> and Full Stack Web Developer with expertise in designing and engineering high-quality web applications. My foundation spans frontend UI craftsmanship with <strong>ReactJS, Next.js, HTML5, CSS3, and JavaScript</strong>, as well as robust backend development with <strong>PHP, Laravel, MySQL, and Firebase</strong>.
+        </p>
+        <p className="bio-paragraph">
+          Whether constructing complex administrative dashboards, implementing real-time database management systems, or building AI-powered web solutions, I focus on clean architecture, responsive UI design, and fast execution.
+        </p>
+        
+        <div className="about-quick-tags">
+          <span className="bio-tag">Degree: BS Software Engineering</span>
+          <span className="bio-tag">Role: Full Stack Web Developer</span>
+          <span className="bio-tag">Status: Available for Jobs & Remote Internships</span>
+        </div>
+      </div>
+
+      <div className="about-highlights-grid">
+        {highlightCards.map((card, idx) => (
+          <div key={idx} className="highlight-card">
+            <div className="highlight-icon-wrapper">
+              {card.icon}
+            </div>
+            <div className="highlight-info">
+              <h4>{card.title}</h4>
+              <p>{card.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 );

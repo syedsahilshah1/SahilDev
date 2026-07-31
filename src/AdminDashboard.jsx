@@ -1,14 +1,36 @@
 import React, { useState, useEffect } from "react";
 import { auth, db } from "./firebase";
-
-import { signInWithEmailAndPassword, signOut, onAuthStateChanged, sendPasswordResetEmail } from "firebase/auth";
+import { 
+  signInWithEmailAndPassword, 
+  createUserWithEmailAndPassword,
+  signOut, 
+  onAuthStateChanged, 
+  sendPasswordResetEmail 
+} from "firebase/auth";
 import { collection, query, orderBy, onSnapshot, updateDoc, doc } from "firebase/firestore";
+import { 
+  Lock, 
+  Mail, 
+  Eye, 
+  EyeOff, 
+  ShieldCheck, 
+  LogOut, 
+  Search, 
+  Filter, 
+  MessageSquare, 
+  Send, 
+  Copy, 
+  RefreshCw, 
+  KeyRound,
+  UserPlus
+} from "lucide-react";
 import "./App.css";
 
 const AdminDashboard = () => {
   const [user, setUser] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [loginError, setLoginError] = useState("");
   const [loginLoading, setLoginLoading] = useState(false);
   const [resetMessage, setResetMessage] = useState("");
@@ -63,21 +85,22 @@ const AdminDashboard = () => {
   }, [user]);
 
   const handleLogin = async (e) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     if (!email.trim() || !password) {
-      setLoginError("Please enter both email and password.");
+      setLoginError("Please enter both admin email and password.");
       return;
     }
 
     setLoginLoading(true);
     setLoginError("");
+    setResetMessage("");
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, email.trim(), password);
     } catch (err) {
       console.error("Login error: ", err);
-      if (err.code === "auth/user-not-found" || err.code === "auth/wrong-password" || err.code === "auth/invalid-credential") {
-        setLoginError("Invalid admin credentials. Please try again.");
+      if (err.code === "auth/invalid-credential" || err.code === "auth/user-not-found" || err.code === "auth/wrong-password") {
+        setLoginError("Invalid credentials or account not registered in Firebase Auth yet. Use 'Create Admin Account' below if this is your first time, or 'Forgot Password' to reset.");
       } else {
         setLoginError("Authentication failed: " + err.message);
       }
@@ -86,15 +109,44 @@ const AdminDashboard = () => {
     }
   };
 
+  const handleRegisterAdmin = async () => {
+    if (!email.trim() || !password) {
+      setLoginError("Please enter both email and password to create an admin account.");
+      return;
+    }
+    if (password.length < 6) {
+      setLoginError("Password must be at least 6 characters long.");
+      return;
+    }
+
+    setLoginLoading(true);
+    setLoginError("");
+    setResetMessage("");
+
+    try {
+      await createUserWithEmailAndPassword(auth, email.trim(), password);
+      setResetMessage("Admin account created & authenticated successfully!");
+    } catch (err) {
+      console.error("Account creation error: ", err);
+      if (err.code === "auth/email-already-in-use") {
+        setLoginError("This email is already registered in Firebase. If you forgot your password, click 'Forgot Password?' below.");
+      } else {
+        setLoginError("Failed to create admin account: " + err.message);
+      }
+    } finally {
+      setLoginLoading(false);
+    }
+  };
+
   const handleForgotPassword = async () => {
     if (!email.trim()) {
-      setResetError("Please enter your admin email first to reset password.");
+      setResetError("Please enter your Admin Email in the field above first.");
       setResetMessage("");
       return;
     }
     try {
-      await sendPasswordResetEmail(auth, email);
-      setResetMessage("Password reset email sent! Check your inbox.");
+      await sendPasswordResetEmail(auth, email.trim());
+      setResetMessage(`Password reset link sent to ${email.trim()}! Check your email inbox to reset your password.`);
       setResetError("");
     } catch (err) {
       console.error("Password reset error: ", err);
@@ -132,19 +184,15 @@ const AdminDashboard = () => {
     const subject = `Re: Smart Portfolio Project Request (${readableType}) - SahilDev`;
     const body = `Hi ${order.name},\n\n${text}\n\n---\nBest regards,\nSahil Dev\nFull Stack Web Developer\nhttps://sahilportfol.netlify.app`;
     
-    // 1. Open local mail client
     const mailtoUrl = `mailto:${order.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.open(mailtoUrl, "_blank");
 
-    // 2. Persist in Firestore
     try {
       const orderRef = doc(db, "orders", order.id);
       const existingReplies = order.replies || [];
       const updatedReplies = [...existingReplies, { text, sentAt: new Date() }];
       
       await updateDoc(orderRef, { replies: updatedReplies });
-      
-      // Clear input text for this order
       setReplyTexts(prev => ({ ...prev, [order.id]: "" }));
     } catch (err) {
       console.error("Error saving reply history: ", err);
@@ -164,18 +212,14 @@ const AdminDashboard = () => {
     const body = `To: ${order.email}\nSubject: ${subject}\n\nHi ${order.name},\n\n${text}\n\n---\nBest regards,\nSahil Dev\nFull Stack Web Developer\nhttps://sahilportfol.netlify.app`;
 
     try {
-      // 1. Copy to clipboard
       await navigator.clipboard.writeText(body);
-      alert("Email pre-formatted content (To, Subject, and Body) copied to clipboard! You can now manually paste it in your Gmail or preferred mail client.");
+      alert("Email pre-formatted content (To, Subject, and Body) copied to clipboard!");
 
-      // 2. Persist in Firestore
       const orderRef = doc(db, "orders", order.id);
       const existingReplies = order.replies || [];
       const updatedReplies = [...existingReplies, { text, sentAt: new Date() }];
       
       await updateDoc(orderRef, { replies: updatedReplies });
-      
-      // Clear input text for this order
       setReplyTexts(prev => ({ ...prev, [order.id]: "" }));
     } catch (err) {
       console.error("Error copying or saving reply history: ", err);
@@ -212,20 +256,29 @@ const AdminDashboard = () => {
   if (!user) {
     return (
       <section className="admin-login-section">
-        <div className="animate login-wrapper">
+        <div className="login-wrapper">
           <div className="login-card">
-            <h2>Admin Login</h2>
-            <p className="login-subtitle">Access the secure Smart Portfolio Service Dashboard</p>
+            <div className="login-card-header">
+              <div className="admin-icon-wrapper">
+                <ShieldCheck size={32} />
+              </div>
+              <h2>Admin Control Portal</h2>
+              <p className="login-subtitle">Sign in or register your admin email to access the control panel</p>
+            </div>
 
             <form onSubmit={handleLogin} className="login-form">
-              {loginError && <div className="form-error">{loginError}</div>}
+              {loginError && <div className="form-error-banner">{loginError}</div>}
+              {resetMessage && <div className="form-success-banner">{resetMessage}</div>}
+              {resetError && <div className="form-error-banner">{resetError}</div>}
               
               <div className="form-group">
-                <label htmlFor="admin-email">Admin Email</label>
+                <label htmlFor="admin-email">
+                  <Mail size={16} className="inline-icon" /> Admin Email
+                </label>
                 <input
                   type="email"
                   id="admin-email"
-                  placeholder="admin@example.com"
+                  placeholder="sahilkhan536ah@gmail.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="form-input"
@@ -234,29 +287,55 @@ const AdminDashboard = () => {
               </div>
 
               <div className="form-group">
-                <label htmlFor="admin-password">Password</label>
-                <input
-                  type="password"
-                  id="admin-password"
-                  placeholder="••••••••"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="form-input"
-                  required
-                />
+                <label htmlFor="admin-password">
+                  <Lock size={16} className="inline-icon" /> Password
+                </label>
+                <div className="password-input-wrapper">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    id="admin-password"
+                    placeholder="••••••••"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="form-input password-input"
+                    required
+                  />
+                  <button
+                    type="button"
+                    className="btn-toggle-password"
+                    onClick={() => setShowPassword(!showPassword)}
+                    title={showPassword ? "Hide password" : "Show password"}
+                  >
+                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                  </button>
+                </div>
               </div>
 
-              {resetMessage && <div className="form-success" style={{color: '#4ade80', fontSize: '0.9rem', marginBottom: '1rem', textAlign: 'center'}}>{resetMessage}</div>}
-              {resetError && <div className="form-error" style={{color: '#f87171', fontSize: '0.9rem', marginBottom: '1rem', textAlign: 'center'}}>{resetError}</div>}
-
-              <button type="submit" disabled={loginLoading} className="btn-primary login-btn">
-                {loginLoading ? "Verifying Credentials..." : "Authenticate Admin"}
-              </button>
-
-              <div style={{textAlign: 'center', marginTop: '1rem'}}>
-                <button type="button" onClick={handleForgotPassword} style={{background: 'none', border: 'none', color: '#38bdf8', cursor: 'pointer', textDecoration: 'underline'}}>
-                  Forgot Password?
+              <div className="auth-buttons-grid">
+                <button type="submit" disabled={loginLoading} className="btn-hero-primary login-btn">
+                  {loginLoading ? "Authenticating..." : "Sign In Admin"}
                 </button>
+                
+                <button 
+                  type="button" 
+                  disabled={loginLoading} 
+                  onClick={handleRegisterAdmin} 
+                  className="btn-secondary btn-register-admin"
+                  title="Create Firebase Auth user if account does not exist yet"
+                >
+                  <UserPlus size={16} />
+                  <span>Create Admin Account</span>
+                </button>
+              </div>
+
+              <div className="forgot-password-box">
+                <button type="button" onClick={handleForgotPassword} className="btn-forgot-pass">
+                  <KeyRound size={15} />
+                  <span>Forgot Password? Send Reset Email</span>
+                </button>
+                <p className="security-note">
+                  💡 If you already created an account but forgot your password, click above to send a reset link to your email.
+                </p>
               </div>
             </form>
           </div>
@@ -269,19 +348,22 @@ const AdminDashboard = () => {
     <section className="admin-dashboard-section">
       <div className="dashboard-header">
         <div>
+          <span className="section-subtitle-badge">Management System</span>
           <h2>Service Control Center</h2>
-          <p>Logged in as: <strong>{user.email}</strong></p>
+          <p className="admin-user-email">Logged in as: <strong>{user.email}</strong></p>
         </div>
         <button onClick={handleLogout} className="btn-logout">
-          Sign Out Dashboard
+          <LogOut size={16} />
+          <span>Sign Out</span>
         </button>
       </div>
 
       <div className="dashboard-controls">
         <div className="control-group search-bar-wrapper">
+          <Search size={18} className="search-icon" />
           <input
             type="text"
-            placeholder="Search by client name, email, or keywords..."
+            placeholder="Search by client name, email, or project description..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="form-input search-input"
@@ -290,7 +372,7 @@ const AdminDashboard = () => {
 
         <div className="filters-row">
           <div className="control-group">
-            <label>Service Type</label>
+            <label><Filter size={14} className="inline-icon" /> Service Type</label>
             <select
               value={filterType}
               onChange={(e) => setFilterType(e.target.value)}
@@ -318,7 +400,7 @@ const AdminDashboard = () => {
           </div>
 
           <div className="control-group">
-            <label>Sort By</label>
+            <label>Sort Order</label>
             <select
               value={sortOrder}
               onChange={(e) => setSortOrder(e.target.value)}
@@ -333,12 +415,12 @@ const AdminDashboard = () => {
 
       {ordersLoading ? (
         <div className="dashboard-loading">
-          <div className="spinner"></div>
+          <RefreshCw size={32} className="spinning-loader" />
           <p>Retrieving incoming project requests...</p>
         </div>
       ) : filteredOrders.length === 0 ? (
         <div className="no-orders-card">
-          <p>No project requests found matching the filter criteria.</p>
+          <p>No project requests found matching your filter criteria.</p>
         </div>
       ) : (
         <div className="orders-list">
@@ -370,7 +452,7 @@ const AdminDashboard = () => {
 
                   {order.selectedCriteria && order.selectedCriteria.length > 0 && (
                     <div className="order-tech-tags">
-                      <strong>Skills:</strong>
+                      <strong>Selected Technologies:</strong>
                       <div className="tags-wrapper">
                         {order.selectedCriteria.map((tech, i) => (
                           <span key={i} className="tech-tag">{tech}</span>
@@ -384,13 +466,13 @@ const AdminDashboard = () => {
                     <p>{order.description}</p>
                   </div>
 
-                  {/* Dynamic Communication Hub Section */}
                   <div className="order-reply-section">
                     <button 
                       onClick={() => toggleReplyBox(order.id)} 
                       className="btn-reply-toggle"
                     >
-                      {activeReplyBox[order.id] ? "▲ Close Response Panel" : "💬 Compose Reply to Client"}
+                      <MessageSquare size={16} />
+                      <span>{activeReplyBox[order.id] ? "Close Response Panel" : "Compose Reply to Client"}</span>
                     </button>
 
                     {activeReplyBox[order.id] && (
@@ -424,16 +506,18 @@ const AdminDashboard = () => {
                             <button 
                               onClick={() => handleSendReply(order)}
                               className="btn-primary btn-send-reply"
-                              title="Launches your local system default mail client (e.g. Windows Mail, Outlook, Mail app)"
+                              title="Launches your system mail client"
                             >
-                              ✉️ Launch Mail Client
+                              <Send size={15} />
+                              <span>Launch Mail Client</span>
                             </button>
                             <button 
                               onClick={() => handleCopyToClipboard(order)}
                               className="btn-secondary btn-copy-reply"
-                              title="Copy pre-formatted email structure (To, Subject, Body) to clipboard to manually paste anywhere"
+                              title="Copy pre-formatted email to clipboard"
                             >
-                              📋 Copy & Log (Manual)
+                              <Copy size={15} />
+                              <span>Copy & Log</span>
                             </button>
                           </div>
                         </div>

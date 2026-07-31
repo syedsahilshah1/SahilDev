@@ -1,49 +1,50 @@
 import React from "react";
+import { GraduationCap, Rocket, Wrench, Check, ArrowRight } from "lucide-react";
 import "./App.css";
 
 const serviceTiers = [
   {
     id: "student",
-    title: "Student Projects",
-    icon: "🎓",
-    tagline: "Academic & Prototype Solutions",
-    description: "Affordable, high-quality development tailored for students, researchers, and early-stage prototypes. Get support for Final Year Projects, research applications, and custom learning tools.",
+    title: "Academic & Student Projects",
+    icon: <GraduationCap size={28} className="service-tier-icon" />,
+    tagline: "FYP & Prototype Engineering",
+    description: "High-quality software development tailored for computer science students and research prototypes. Full architecture support for Final Year Projects.",
     features: [
-      "Custom web applications (React, Node, Firebase)",
-      "Well-documented clean code",
-      "Explainers & setup guidance",
-      "Highly budget-friendly pricing",
-      "Rapid delivery for tight deadlines"
+      "Custom Web Applications (React, Next.js, Laravel, Firebase)",
+      "Clean, well-commented source code",
+      "Comprehensive setup & project walkthroughs",
+      "Budget-friendly student pricing",
+      "On-time delivery for tight evaluation deadlines"
     ],
-    badge: "Most Popular"
+    badge: "Popular Service"
   },
   {
     id: "planned",
-    title: "Planned Projects",
-    icon: "🚀",
-    tagline: "Pre-order & Custom Ventures",
-    description: "Be the first to secure next-gen solutions. Browse planned architectures currently in active design. Pre-order to customize them specifically for your business or academic needs.",
+    title: "Custom Full-Stack Solutions",
+    icon: <Rocket size={28} className="service-tier-icon" />,
+    tagline: "Turnkey MVP & Web Apps",
+    description: "Tailor-made web applications engineered from scratch. From initial wireframes to production database schema and REST API setup.",
     features: [
-      "AI-Powered SaaS Templates",
-      "Real-time Collaboration platforms",
-      "Custom Enterprise CMS & POS",
-      "Early adopter discount & support",
-      "Tailor-made features on conceptual designs"
+      "Modern React / Next.js single page applications",
+      "RESTful API & authentication server architecture",
+      "Custom Enterprise Dashboards & POS systems",
+      "Real-time database and notification setup",
+      "Fully responsive cross-device layout design"
     ],
     badge: "Next Gen"
   },
   {
     id: "maintenance",
-    title: "Maintenance Projects",
-    icon: "🛠️",
-    tagline: "Code Care & Optimization",
-    description: "Keep your existing web apps running fast, secure, and modern. Support packages for database tuning, security audits, framework updates, code refactoring, and feature extensions.",
+    title: "App Refactoring & Optimization",
+    icon: <Wrench size={28} className="service-tier-icon" />,
+    tagline: "Code Care & Speed Upgrades",
+    description: "Keep your web applications fast, responsive, and secure. Performance tuning, code refactoring, database query optimization, and UI overhauls.",
     features: [
-      "Performance optimization & speedups",
-      "Bug fixes & security patching",
-      "Database scaling & migrations",
-      "Regular backups & monitoring config",
-      "API integrations & UI modernizations"
+      "Frontend performance & speed optimization",
+      "Bug fixes & framework upgrades",
+      "MySQL & Firebase database index tuning",
+      "API integrations & UI modernizations",
+      "Glassmorphic design updates & responsive fixes"
     ],
     badge: "Premium Care"
   }
@@ -51,42 +52,45 @@ const serviceTiers = [
 
 const Services = ({ onSelectService }) => {
   return (
-    <section id="services">
-      <div className="animate">
-        <h2>Our Service Platforms</h2>
-        <p className="section-subtitle">
-          Select from our curated service platforms designed to turn your technical problems into elegant solutions.
+    <section id="services" className="section-padding">
+      <div className="section-header">
+        <span className="section-subtitle-badge">Solutions & Offerings</span>
+        <h2 className="section-title">Development Services</h2>
+        <p className="section-intro">
+          Targeted software solutions engineered to bring technical ideas into functional reality.
         </p>
+      </div>
 
-        <div className="services-grid">
-          {serviceTiers.map((tier) => (
-            <div key={tier.id} className="service-card">
-              {tier.badge && <span className="service-badge">{tier.badge}</span>}
-              <div className="service-icon">{tier.icon}</div>
-              <h3>{tier.title}</h3>
-              <span className="service-tagline">{tier.tagline}</span>
-              <p className="service-desc">{tier.description}</p>
-              
-              <div className="service-features-list">
-                <h4>What's Included:</h4>
-                <ul>
-                  {tier.features.map((feat, index) => (
-                    <li key={index}>
-                      <span className="checkmark">✓</span> {feat}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <button
-                onClick={() => onSelectService(tier.id)}
-                className="btn-service-action"
-              >
-                Request Service
-              </button>
+      <div className="services-grid-modern">
+        {serviceTiers.map((tier) => (
+          <div key={tier.id} className="service-card-modern">
+            {tier.badge && <span className="service-badge">{tier.badge}</span>}
+            <div className="service-icon-box">{tier.icon}</div>
+            <h3 className="service-title">{tier.title}</h3>
+            <span className="service-tagline">{tier.tagline}</span>
+            <p className="service-desc">{tier.description}</p>
+            
+            <div className="service-features-list">
+              <h4>What's Included:</h4>
+              <ul>
+                {tier.features.map((feat, index) => (
+                  <li key={index}>
+                    <Check size={16} className="check-icon" />
+                    <span>{feat}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-          ))}
-        </div>
+
+            <button
+              onClick={() => onSelectService(tier.id)}
+              className="btn-service-action"
+            >
+              <span>Request Service</span>
+              <ArrowRight size={16} />
+            </button>
+          </div>
+        ))}
       </div>
     </section>
   );
