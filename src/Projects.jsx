@@ -24,8 +24,8 @@ const projectsData = [
     name: "Digital Kohat Platform",
     category: "fullstack",
     featured: true,
-    badge: "Live Platform",
-    description: "Official digital hub for Kohat city providing administrative information, local services directory, and news updates.",
+    badge: "Nov 2025 - Jul 2026",
+    description: "Official digital platform for Kohat city providing administrative information, local services directory, and public news updates.",
     tags: ["PHP", "Laravel", "MySQL", "JavaScript"],
     link: "https://kohat.online/",
     github: null
@@ -74,8 +74,8 @@ const projectsData = [
     name: "Rescue 1122 Kohat Division",
     category: "saas",
     featured: true,
-    badge: "Gov Prototype",
-    description: "Emergency dispatch and station management dashboard prototype developed for Rescue 1122 Kohat Division operations.",
+    badge: "Innovative Design Co.",
+    description: "Emergency dispatch and station management dashboard prototype developed at Innovative Design Company for Rescue 1122 Kohat Division operations.",
     tags: ["React", "Firebase", "Analytics", "Leaflet Maps"],
     link: "https://rescue-1122-kohat-division-prototyp.vercel.app/",
     github: "https://github.com/syedsahilshah1/-Rescue-1122-Kohat-Division-Prototype"
