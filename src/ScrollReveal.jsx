@@ -32,14 +32,16 @@ const variantsMap = {
  * ScrollReveal Component
  * - Appears when scrolled into view (whileInView)
  * - Disappears when scrolled past or out of view (once = false)
+ * - Elevates and expands smoothly on mouse hover (whileHover)
  */
 const ScrollReveal = ({
   children,
   direction = "up",
   delay = 0,
   duration = 0.5,
-  once = false, // false ensures re-animation on scroll (appear on view, go on scroll away)
+  once = false,
   amount = 0.15,
+  hover = true, // enables smooth mouse cursor hover lift & scale effect
   className = "",
   style = {},
   ...props
@@ -50,6 +52,7 @@ const ScrollReveal = ({
     <motion.div
       initial="hidden"
       whileInView="visible"
+      whileHover={hover ? { y: -8, scale: 1.02, transition: { duration: 0.25, ease: "easeOut" } } : undefined}
       viewport={{ once, amount }}
       variants={selectedVariant}
       transition={{
@@ -58,7 +61,7 @@ const ScrollReveal = ({
         ease: [0.25, 0.1, 0.25, 1.0],
       }}
       className={className}
-      style={style}
+      style={{ height: "100%", width: "100%", ...style }}
       {...props}
     >
       {children}

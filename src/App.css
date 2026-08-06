@@ -845,6 +845,13 @@ body {
   gap: 2rem;
   max-width: 1300px;
   margin: 0 auto;
+  align-items: stretch;
+}
+
+.projects-grid-modern > * {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .project-card-modern {
@@ -854,6 +861,7 @@ body {
   padding: 2rem;
   display: flex;
   flex-direction: column;
+  height: 100%;
   transition: all 0.35s ease;
   position: relative;
 }
@@ -873,6 +881,7 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
+  min-height: 28px;
 }
 
 .project-badge {
@@ -916,6 +925,7 @@ body {
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-bottom: 1.5rem;
+  margin-top: auto;
 }
 
 .tech-tag {
@@ -934,6 +944,7 @@ body {
   justify-content: space-between;
   padding-top: 1.25rem;
   border-top: 1px solid var(--glass-border);
+  margin-top: auto;
 }
 
 .btn-card-link {
@@ -2888,4 +2899,149 @@ body {
   .hero-title {
     font-size: 2.1rem;
   }
+}
+
+/* Universal Grid Wrappers Alignment Fix */
+.projects-grid-modern > *,
+.services-grid-modern > *,
+.about-highlights-grid > *,
+.skills-grid-modern > *,
+.opportunities-grid-modern > *,
+.cv-cards-grid > *,
+.stats-grid-modern > * {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.service-card-modern,
+.highlight-card,
+.hire-card-modern,
+.cv-card-item {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.service-card-modern .btn-service-action,
+.hire-card-modern .btn-hire-action {
+  margin-top: auto;
+}
+
+/* Universal Card Hover Transition */
+.highlight-card,
+.skill-card-modern,
+.project-card-modern,
+.service-card-modern,
+.stat-card-modern,
+.timeline-content-card,
+.cv-card-item,
+.hire-card-modern,
+.hire-avail-card,
+.contact-card,
+.type-selection-card,
+.tech-checkbox-pill,
+.about-bio-card,
+.contact-form-wrapper {
+  transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
+              box-shadow 0.35s ease,
+              border-color 0.35s ease,
+              background 0.35s ease !important;
+  cursor: pointer;
+}
+
+/* Mouse Hover Elevate & Glow */
+.highlight-card:hover,
+.skill-card-modern:hover,
+.project-card-modern:hover,
+.service-card-modern:hover,
+.stat-card-modern:hover,
+.timeline-content-card:hover,
+.cv-card-item:hover,
+.hire-card-modern:hover,
+.hire-avail-card:hover,
+.contact-card:hover,
+.type-selection-card:hover,
+.about-bio-card:hover {
+  transform: translateY(-8px) scale(1.015) !important;
+  border-color: rgba(99, 102, 241, 0.6) !important;
+  box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.35),
+              0 0 25px rgba(168, 85, 247, 0.2) !important;
+  background: rgba(30, 41, 59, 0.9) !important;
+}
+
+/* Icon & Badge Motion on Card Hover */
+.highlight-card:hover .highlight-icon-wrapper,
+.service-card-modern:hover .service-icon-box,
+.hire-card-modern:hover .hire-card-icon,
+.contact-card:hover .contact-card-icon {
+  transform: scale(1.15) rotate(5deg);
+  background: var(--gradient-main);
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+  transition: transform 0.35s ease, background 0.35s ease, color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.skill-card-modern:hover .skill-emoji-icon {
+  transform: scale(1.3) rotate(-8deg);
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.project-card-modern:hover .project-title {
+  background: var(--gradient-main);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease;
+}
+
+.cv-card-item:hover .cv-emoji {
+  transform: scale(1.35) translateY(-3px);
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.hire-avail-card:hover .avail-value {
+  color: #a855f7;
+  transition: color 0.3s ease;
+}
+
+/* Button & Link Hover Animations */
+.btn-hero-primary,
+.btn-hero-secondary,
+.btn-service-action,
+.btn-card-link,
+.btn-hire-action,
+.btn-send-contact,
+.btn-cta-primary,
+.btn-cta-secondary,
+.btn-cv-download,
+.btn-cv-preview,
+.btn-nav-cta {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease !important;
+  cursor: pointer;
+}
+
+.btn-hero-primary:hover,
+.btn-hero-secondary:hover,
+.btn-service-action:hover,
+.btn-card-link:hover,
+.btn-hire-action:hover,
+.btn-send-contact:hover,
+.btn-cta-primary:hover,
+.btn-cta-secondary:hover,
+.btn-cv-download:hover,
+.btn-cv-preview:hover {
+  transform: translateY(-4px) scale(1.03) !important;
+  box-shadow: 0 12px 30px rgba(99, 102, 241, 0.5) !important;
+}
+
+.btn-hero-primary:hover svg,
+.btn-service-action:hover svg,
+.btn-hire-action:hover svg,
+.btn-send-contact:hover svg,
+.btn-cta-primary:hover svg {
+  transform: translateX(4px);
+  transition: transform 0.25s ease;
 }
