@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
 import StarryBackground from "./StarryBackground";
+import VideoStatusPopup from "./VideoStatusPopup";
 import Navbar from "./Navbar";
 import Hero from "./Hero";
 import About from "./About";
@@ -116,6 +117,7 @@ function App() {
       <HireMe />
       <Contact />
       <Footer />
+      <VideoStatusPopup />
     </div>
   );
 }
