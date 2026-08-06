@@ -28,6 +28,7 @@ import "./App.css";
 
 const AdminDashboard = () => {
   const [user, setUser] = useState(null);
+  const [authChecking, setAuthChecking] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -52,6 +53,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setAuthChecking(false);
       if (currentUser) {
         setOrdersLoading(true);
       }
@@ -253,6 +255,17 @@ const AdminDashboard = () => {
       }
     });
 
+  if (authChecking) {
+    return (
+      <section className="admin-login-section" style={{ minHeight: "calc(100vh - 80px)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <div style={{ textAlign: "center", color: "var(--text-muted)", zIndex: 2 }}>
+          <RefreshCw size={36} className="spinning-loader" style={{ margin: "0 auto 1rem" }} />
+          <p style={{ fontWeight: 600, color: "#ffffff" }}>Loading Admin Portal...</p>
+        </div>
+      </section>
+    );
+  }
+
   if (!user) {
     return (
       <section className="admin-login-section">
@@ -314,17 +327,6 @@ const AdminDashboard = () => {
               <div className="auth-buttons-grid">
                 <button type="submit" disabled={loginLoading} className="btn-hero-primary login-btn">
                   {loginLoading ? "Authenticating..." : "Sign In Admin"}
-                </button>
-                
-                <button 
-                  type="button" 
-                  disabled={loginLoading} 
-                  onClick={handleRegisterAdmin} 
-                  className="btn-secondary btn-register-admin"
-                  title="Create Firebase Auth user if account does not exist yet"
-                >
-                  <UserPlus size={16} />
-                  <span>Create Admin Account</span>
                 </button>
               </div>
 
