@@ -1363,8 +1363,16 @@ body {
 }
 
 .hire-card-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  background: rgba(99, 102, 241, 0.15);
   color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 1.25rem;
+  flex-shrink: 0;
 }
 
 .hire-card-title {
@@ -1630,10 +1638,13 @@ body {
   background: var(--bg-card);
   border: 1px solid var(--glass-border);
   border-radius: 1.25rem;
-  padding: 1.5rem;
+  padding: 1.25rem 1.5rem;
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  overflow: hidden;
 }
 
 .contact-card-icon {
@@ -1649,20 +1660,25 @@ body {
 }
 
 .contact-card-details {
-  flex-grow: 1;
+  flex: 1;
+  min-width: 140px;
+  overflow: hidden;
 }
 
 .contact-label {
   display: block;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--text-muted);
   text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .contact-val {
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: #ffffff;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .btn-copy-action {
@@ -1677,6 +1693,7 @@ body {
   font-size: 0.8rem;
   cursor: pointer;
   transition: all 0.25s ease;
+  flex-shrink: 0;
 }
 
 .btn-copy-action:hover {
