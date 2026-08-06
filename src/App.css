@@ -3,10 +3,10 @@
   --primary-hover: #4f46e5;
   --secondary: #a855f7;
   --accent: #ec4899;
-  --bg-dark: #0b0f19;
-  --bg-section: rgba(15, 23, 42, 0.6);
-  --bg-card: rgba(30, 41, 59, 0.5);
-  --bg-card-hover: rgba(30, 41, 59, 0.8);
+  --bg-dark: #060811;
+  --bg-section: rgba(15, 23, 42, 0.35);
+  --bg-card: rgba(15, 23, 42, 0.55);
+  --bg-card-hover: rgba(30, 41, 59, 0.85);
   --text-main: #f8fafc;
   --text-muted: #94a3b8;
   --glass-border: rgba(255, 255, 255, 0.08);

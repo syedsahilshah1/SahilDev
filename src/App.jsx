@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
+import StarryBackground from "./StarryBackground";
 import Navbar from "./Navbar";
 import Hero from "./Hero";
 import About from "./About";
@@ -70,7 +71,8 @@ function App() {
   if (currentHash === "#admin") {
     return (
       <div className="admin-wrapper-main">
-        <div style={{ padding: "1.5rem 10%", background: "rgba(15, 23, 42, 0.8)", borderBottom: "1px solid var(--glass-border)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <StarryBackground />
+        <div style={{ padding: "1.5rem 10%", background: "rgba(15, 23, 42, 0.8)", borderBottom: "1px solid var(--glass-border)", display: "flex", justifyContent: "space-between", alignItems: "center", position: "relative", zIndex: 1 }}>
           <div style={{ fontSize: "1.5rem", fontWeight: "800", background: "var(--gradient-main)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", cursor: "pointer" }} onClick={() => window.location.hash = "#"}>
             SAHILDEV ADMIN
           </div>
@@ -88,7 +90,8 @@ function App() {
   }
 
   return (
-    <>
+    <div style={{ position: "relative", minHeight: "100vh" }}>
+      <StarryBackground />
       <motion.div
         style={{
           scaleX,
@@ -113,7 +116,7 @@ function App() {
       <HireMe />
       <Contact />
       <Footer />
-    </>
+    </div>
   );
 }
 
