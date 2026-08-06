@@ -73,14 +73,13 @@ function App() {
     return (
       <div className="admin-wrapper-main">
         <StarryBackground />
-        <div style={{ padding: "1rem 8%", background: "rgba(15, 23, 42, 0.9)", borderBottom: "1px solid var(--glass-border)", display: "flex", justifyContent: "space-between", alignItems: "center", position: "relative", zIndex: 10 }}>
-          <div style={{ fontSize: "1.35rem", fontWeight: "800", background: "var(--gradient-main)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", cursor: "pointer" }} onClick={() => window.location.hash = "#"}>
+        <div className="admin-nav-header">
+          <div className="admin-logo-text" onClick={() => window.location.hash = "#"}>
             SAHILDEV ADMIN
           </div>
           <button
             onClick={() => window.location.hash = "#"}
-            className="btn-primary"
-            style={{ padding: "0.55rem 1.1rem", fontSize: "0.85rem", background: "rgba(255,255,255,0.06)", border: "1px solid var(--glass-border)", boxShadow: "none", cursor: "pointer" }}
+            className="btn-admin-back"
           >
             ← Back to Portfolio
           </button>
