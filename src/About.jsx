@@ -1,5 +1,6 @@
 import React from "react";
 import { GraduationCap, Code, Cpu, ShieldCheck } from "lucide-react";
+import ScrollReveal from "./ScrollReveal";
 import "./App.css";
 
 const highlightCards = [
@@ -27,16 +28,16 @@ const highlightCards = [
 
 const About = () => (
   <section id="about" className="section-padding">
-    <div className="section-header">
+    <ScrollReveal direction="up" duration={0.6} className="section-header">
       <span className="section-subtitle-badge">Get To Know Me</span>
       <h2 className="section-title">About Me</h2>
       <p className="section-intro">
         Passionate Software Engineer dedicated to crafting robust web applications that solve real-world problems.
       </p>
-    </div>
+    </ScrollReveal>
 
     <div className="about-content-grid">
-      <div className="about-bio-card">
+      <ScrollReveal direction="left" duration={0.6} delay={0.1} className="about-bio-card">
         <h3>Hello, I'm Sahil Syed</h3>
         <p className="bio-paragraph">
           I am a <strong>BS Software Engineer</strong> and Full Stack Web Developer with expertise in designing and engineering high-quality web applications. My foundation spans frontend UI craftsmanship with <strong>ReactJS, Next.js, HTML5, CSS3, and JavaScript</strong>, as well as robust backend development with <strong>PHP, Laravel, MySQL, and Firebase</strong>.
@@ -50,19 +51,26 @@ const About = () => (
           <span className="bio-tag">Role: Full Stack Web Developer</span>
           <span className="bio-tag">Status: Available for Jobs & Remote Internships</span>
         </div>
-      </div>
+      </ScrollReveal>
 
       <div className="about-highlights-grid">
         {highlightCards.map((card, idx) => (
-          <div key={idx} className="highlight-card">
-            <div className="highlight-icon-wrapper">
-              {card.icon}
+          <ScrollReveal 
+            key={idx} 
+            direction="right" 
+            duration={0.5} 
+            delay={0.1 + idx * 0.1}
+          >
+            <div className="highlight-card">
+              <div className="highlight-icon-wrapper">
+                {card.icon}
+              </div>
+              <div className="highlight-info">
+                <h4>{card.title}</h4>
+                <p>{card.description}</p>
+              </div>
             </div>
-            <div className="highlight-info">
-              <h4>{card.title}</h4>
-              <p>{card.description}</p>
-            </div>
-          </div>
+          </ScrollReveal>
         ))}
       </div>
     </div>

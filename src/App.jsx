@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { motion, useScroll, useSpring } from "framer-motion";
 import Navbar from "./Navbar";
 import Hero from "./Hero";
 import About from "./About";
@@ -12,11 +13,18 @@ import HireMe from "./HireMe";
 import Contact from "./Contact";
 import Footer from "./Footer";
 import AdminDashboard from "./AdminDashboard";
-import "./App.css";  // fixed this line
+import "./App.css";
 
 function App() {
   const [currentHash, setCurrentHash] = useState(window.location.hash);
   const [selectedService, setSelectedService] = useState("");
+
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -42,7 +50,6 @@ function App() {
       doc.style.setProperty("--adsense-top-offset", `${totalOffset}px`);
     };
 
-    // Watch for inline style mutations on html and body tags (which AdSense edits dynamically for top anchors)
     const observer = new MutationObserver(() => {
       updateOffset();
     });
@@ -50,10 +57,8 @@ function App() {
     observer.observe(doc, { attributes: true, attributeFilter: ["style"] });
     observer.observe(document.body, { attributes: true, attributeFilter: ["style"] });
 
-    // Initial check
     updateOffset();
 
-    // Cleanup observer on unmount
     return () => observer.disconnect();
   }, []);
 
@@ -84,6 +89,19 @@ function App() {
 
   return (
     <>
+      <motion.div
+        style={{
+          scaleX,
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "3px",
+          background: "linear-gradient(90deg, #6366f1, #a855f7, #ec4899)",
+          transformOrigin: "0%",
+          zIndex: 9999
+        }}
+      />
       <Navbar />
       <Hero />
       <About />

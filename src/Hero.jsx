@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ArrowRight, Download, Mail, Code2, Terminal, Briefcase } from "lucide-react";
+import ScrollReveal from "./ScrollReveal";
 import "./App.css";
 
 const GithubIcon = ({ size = 20 }) => (
@@ -32,7 +33,7 @@ const Hero = () => {
     <section id="home" className="hero-section">
       <div className="hero-background-glow"></div>
       <div className="hero-container">
-        <div className="hero-text-content">
+        <ScrollReveal direction="left" duration={0.6} className="hero-text-content">
           <div className="status-badge">
             <span className="status-dot"></span>
             <span>Open for Remote Roles & Internships</span>
@@ -98,9 +99,9 @@ const Hero = () => {
               <Briefcase size={20} />
             </a>
           </div>
-        </div>
+        </ScrollReveal>
 
-        <div className="hero-visual-container">
+        <ScrollReveal direction="right" duration={0.6} delay={0.2} className="hero-visual-container">
           <div className="hero-image-frame">
             <div className="hero-image-blob">
               <img
@@ -127,7 +128,7 @@ const Hero = () => {
               <span className="chip-rating">⚡ BS Software Eng.</span>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

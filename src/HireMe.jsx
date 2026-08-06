@@ -1,5 +1,6 @@
 import React from "react";
 import { Globe, Briefcase, Handshake, Check, Mail, MessageSquare, Download, FileText, ExternalLink } from "lucide-react";
+import ScrollReveal from "./ScrollReveal";
 import "./App.css";
 
 const opportunities = [
@@ -85,16 +86,16 @@ const HireMe = () => {
 
   return (
     <section id="hire-me" className="section-padding">
-      <div className="section-header">
+      <ScrollReveal direction="up" duration={0.6} className="section-header">
         <span className="section-subtitle-badge">Recruitment & Hiring</span>
         <h2 className="section-title">Hire Me & Download CV</h2>
         <p className="section-intro">
           Download my resume documents or get in touch regarding remote software engineering roles, internships, and contract work.
         </p>
-      </div>
+      </ScrollReveal>
 
       {/* CV Download Section */}
-      <div className="cv-download-container">
+      <ScrollReveal direction="up" duration={0.6} delay={0.1} className="cv-download-container">
         <div className="cv-header">
           <FileText size={22} className="inline-icon" />
           <h3>Curriculum Vitae (CV) & Resume Downloads</h3>
@@ -136,54 +137,58 @@ const HireMe = () => {
             </div>
           ))}
         </div>
-      </div>
+      </ScrollReveal>
 
       {/* Availability Pill Grid */}
       <div className="hire-availability-grid">
-        {availability.map((item) => (
-          <div key={item.label} className="hire-avail-card">
-            <span className="avail-label">{item.label}</span>
-            <span className="avail-value">{item.value}</span>
-          </div>
+        {availability.map((item, idx) => (
+          <ScrollReveal key={item.label} direction="zoom" duration={0.4} delay={idx * 0.08}>
+            <div className="hire-avail-card">
+              <span className="avail-label">{item.label}</span>
+              <span className="avail-value">{item.value}</span>
+            </div>
+          </ScrollReveal>
         ))}
       </div>
 
       {/* Opportunity Cards */}
       <div className="opportunities-grid-modern">
-        {opportunities.map((item) => (
-          <div key={item.id} className={`hire-card-modern ${item.badge ? "has-badge" : ""}`}>
-            {item.badge && <span className="hire-badge">{item.badge}</span>}
-            <div className="hire-card-icon">{item.icon}</div>
-            <h3 className="hire-card-title">{item.title}</h3>
-            <span className="hire-card-tagline">{item.tagline}</span>
-            <p className="hire-card-desc">{item.description}</p>
+        {opportunities.map((item, idx) => (
+          <ScrollReveal key={item.id} direction="up" duration={0.5} delay={idx * 0.12}>
+            <div className={`hire-card-modern ${item.badge ? "has-badge" : ""}`}>
+              {item.badge && <span className="hire-badge">{item.badge}</span>}
+              <div className="hire-card-icon">{item.icon}</div>
+              <h3 className="hire-card-title">{item.title}</h3>
+              <span className="hire-card-tagline">{item.tagline}</span>
+              <p className="hire-card-desc">{item.description}</p>
 
-            <div className="hire-card-features">
-              <h4>Key Highlights:</h4>
-              <ul>
-                {item.highlights.map((point, idx) => (
-                  <li key={idx}>
-                    <Check size={16} className="check-icon" />
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="hire-card-features">
+                <h4>Key Highlights:</h4>
+                <ul>
+                  {item.highlights.map((point, idx) => (
+                    <li key={idx}>
+                      <Check size={16} className="check-icon" />
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => handleHireInquiry(item.title)}
+                className="btn-hire-action"
+              >
+                <Mail size={16} />
+                <span>Discuss This Role</span>
+              </button>
             </div>
-
-            <button
-              type="button"
-              onClick={() => handleHireInquiry(item.title)}
-              className="btn-hire-action"
-            >
-              <Mail size={16} />
-              <span>Discuss This Role</span>
-            </button>
-          </div>
+          </ScrollReveal>
         ))}
       </div>
 
       {/* Quick Call to Action banner */}
-      <div className="hire-cta-banner">
+      <ScrollReveal direction="zoom" duration={0.6} className="hire-cta-banner">
         <div className="cta-banner-text">
           <h3>Let's build something great together</h3>
           <p>Have an open role or contract project? Feel free to email me directly or send a message below.</p>
@@ -201,7 +206,7 @@ const HireMe = () => {
             <span>Email Directly</span>
           </a>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 };

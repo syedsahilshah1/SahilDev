@@ -1,5 +1,6 @@
 import React from "react";
 import { GraduationCap, Rocket, Wrench, Check, ArrowRight } from "lucide-react";
+import ScrollReveal from "./ScrollReveal";
 import "./App.css";
 
 const serviceTiers = [
@@ -53,43 +54,50 @@ const serviceTiers = [
 const Services = ({ onSelectService }) => {
   return (
     <section id="services" className="section-padding">
-      <div className="section-header">
+      <ScrollReveal direction="up" duration={0.6} className="section-header">
         <span className="section-subtitle-badge">Solutions & Offerings</span>
         <h2 className="section-title">Development Services</h2>
         <p className="section-intro">
           Targeted software solutions engineered to bring technical ideas into functional reality.
         </p>
-      </div>
+      </ScrollReveal>
 
       <div className="services-grid-modern">
-        {serviceTiers.map((tier) => (
-          <div key={tier.id} className="service-card-modern">
-            {tier.badge && <span className="service-badge">{tier.badge}</span>}
-            <div className="service-icon-box">{tier.icon}</div>
-            <h3 className="service-title">{tier.title}</h3>
-            <span className="service-tagline">{tier.tagline}</span>
-            <p className="service-desc">{tier.description}</p>
-            
-            <div className="service-features-list">
-              <h4>What's Included:</h4>
-              <ul>
-                {tier.features.map((feat, index) => (
-                  <li key={index}>
-                    <Check size={16} className="check-icon" />
-                    <span>{feat}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+        {serviceTiers.map((tier, idx) => (
+          <ScrollReveal
+            key={tier.id}
+            direction="up"
+            duration={0.5}
+            delay={idx * 0.12}
+          >
+            <div className="service-card-modern">
+              {tier.badge && <span className="service-badge">{tier.badge}</span>}
+              <div className="service-icon-box">{tier.icon}</div>
+              <h3 className="service-title">{tier.title}</h3>
+              <span className="service-tagline">{tier.tagline}</span>
+              <p className="service-desc">{tier.description}</p>
+              
+              <div className="service-features-list">
+                <h4>What's Included:</h4>
+                <ul>
+                  {tier.features.map((feat, index) => (
+                    <li key={index}>
+                      <Check size={16} className="check-icon" />
+                      <span>{feat}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-            <button
-              onClick={() => onSelectService(tier.id)}
-              className="btn-service-action"
-            >
-              <span>Request Service</span>
-              <ArrowRight size={16} />
-            </button>
-          </div>
+              <button
+                onClick={() => onSelectService(tier.id)}
+                className="btn-service-action"
+              >
+                <span>Request Service</span>
+                <ArrowRight size={16} />
+              </button>
+            </div>
+          </ScrollReveal>
         ))}
       </div>
     </section>

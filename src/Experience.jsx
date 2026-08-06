@@ -1,5 +1,6 @@
 import React from "react";
 import { Briefcase, GraduationCap, Award, Calendar, CheckCircle2, Building2 } from "lucide-react";
+import ScrollReveal from "./ScrollReveal";
 import "./App.css";
 
 const stats = [
@@ -53,62 +54,78 @@ const timelineEvents = [
 const Experience = () => {
   return (
     <section id="experience" className="section-padding">
-      <div className="section-header">
+      <ScrollReveal direction="up" duration={0.6} className="section-header">
         <span className="section-subtitle-badge">Track Record & Milestones</span>
         <h2 className="section-title">Experience & Education</h2>
         <p className="section-intro">
           Academic foundation in Software Engineering paired with hands-on web production experience.
         </p>
-      </div>
+      </ScrollReveal>
 
       {/* Stats Counter Bar */}
       <div className="stats-grid-modern">
         {stats.map((stat, index) => (
-          <div key={index} className="stat-card-modern">
-            <h3 className="stat-value">{stat.value}</h3>
-            <p className="stat-label">{stat.label}</p>
-          </div>
+          <ScrollReveal
+            key={index}
+            direction="zoom"
+            duration={0.4}
+            delay={index * 0.08}
+          >
+            <div className="stat-card-modern">
+              <h3 className="stat-value">{stat.value}</h3>
+              <p className="stat-label">{stat.label}</p>
+            </div>
+          </ScrollReveal>
         ))}
       </div>
 
       {/* Timeline Section */}
       <div className="timeline-container">
-        <h3 className="timeline-section-title">
-          <Calendar size={22} className="timeline-header-icon" />
-          <span>Engineering Timeline</span>
-        </h3>
+        <ScrollReveal direction="up" duration={0.5}>
+          <h3 className="timeline-section-title">
+            <Calendar size={22} className="timeline-header-icon" />
+            <span>Engineering Timeline</span>
+          </h3>
+        </ScrollReveal>
 
         <div className="timeline-list">
           {timelineEvents.map((item, index) => (
-            <div key={index} className="timeline-item">
-              <div className="timeline-marker">
-                <div className="timeline-icon-badge">
-                  {item.icon}
-                </div>
-                {index < timelineEvents.length - 1 && <div className="timeline-connector"></div>}
-              </div>
-
-              <div className="timeline-content-card">
-                <div className="timeline-card-header">
-                  <div>
-                    <h4 className="timeline-item-title">{item.title}</h4>
-                    <span className="timeline-org">{item.organization}</span>
+            <ScrollReveal
+              key={index}
+              direction={index % 2 === 0 ? "left" : "right"}
+              duration={0.5}
+              delay={index * 0.15}
+            >
+              <div className="timeline-item">
+                <div className="timeline-marker">
+                  <div className="timeline-icon-badge">
+                    {item.icon}
                   </div>
-                  <span className="timeline-period">{item.period}</span>
+                  {index < timelineEvents.length - 1 && <div className="timeline-connector"></div>}
                 </div>
 
-                <p className="timeline-description">{item.description}</p>
-
-                <div className="timeline-highlights">
-                  {item.highlights.map((h, i) => (
-                    <div key={i} className="timeline-highlight-bullet">
-                      <CheckCircle2 size={15} className="bullet-icon" />
-                      <span>{h}</span>
+                <div className="timeline-content-card">
+                  <div className="timeline-card-header">
+                    <div>
+                      <h4 className="timeline-item-title">{item.title}</h4>
+                      <span className="timeline-org">{item.organization}</span>
                     </div>
-                  ))}
+                    <span className="timeline-period">{item.period}</span>
+                  </div>
+
+                  <p className="timeline-description">{item.description}</p>
+
+                  <div className="timeline-highlights">
+                    {item.highlights.map((h, i) => (
+                      <div key={i} className="timeline-highlight-bullet">
+                        <CheckCircle2 size={15} className="bullet-icon" />
+                        <span>{h}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>

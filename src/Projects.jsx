@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { ExternalLink, Search, Star, Filter, Code } from "lucide-react";
+import ScrollReveal from "./ScrollReveal";
 import "./App.css";
 
 const GithubIcon = ({ size = 16 }) => (
@@ -198,15 +199,15 @@ const Projects = () => {
 
   return (
     <section id="projects" className="section-padding">
-      <div className="section-header">
+      <ScrollReveal direction="up" duration={0.6} className="section-header">
         <span className="section-subtitle-badge">Portfolio & Case Studies</span>
         <h2 className="section-title">Featured Engineering Work</h2>
         <p className="section-intro">
           Explore production platforms, AI integrations, SaaS dashboards, and full-stack web applications.
         </p>
-      </div>
+      </ScrollReveal>
 
-      <div className="projects-controls-container">
+      <ScrollReveal direction="up" duration={0.5} delay={0.1} className="projects-controls-container">
         <div className="search-bar-wrapper">
           <Search size={18} className="search-icon" />
           <input
@@ -237,60 +238,67 @@ const Projects = () => {
             </button>
           ))}
         </div>
-      </div>
+      </ScrollReveal>
 
       <div className="projects-grid-modern">
-        {filteredProjects.map((proj) => (
-          <div key={proj.name} className={`project-card-modern ${proj.featured ? "is-featured" : ""}`}>
-            <div className="card-top-bar">
-              <span className="project-badge">{proj.badge || "Project"}</span>
-              {proj.featured && (
-                <span className="featured-star" title="Featured Highlight">
-                  <Star size={14} fill="#F59E0B" color="#F59E0B" /> Featured
-                </span>
-              )}
-            </div>
+        {filteredProjects.map((proj, idx) => (
+          <ScrollReveal
+            key={proj.name}
+            direction="up"
+            duration={0.5}
+            delay={0.06 * (idx % 6)}
+          >
+            <div className={`project-card-modern ${proj.featured ? "is-featured" : ""}`}>
+              <div className="card-top-bar">
+                <span className="project-badge">{proj.badge || "Project"}</span>
+                {proj.featured && (
+                  <span className="featured-star" title="Featured Highlight">
+                    <Star size={14} fill="#F59E0B" color="#F59E0B" /> Featured
+                  </span>
+                )}
+              </div>
 
-            <h3 className="project-title">{proj.name}</h3>
-            <p className="project-description">{proj.description}</p>
+              <h3 className="project-title">{proj.name}</h3>
+              <p className="project-description">{proj.description}</p>
 
-            <div className="project-tags-list">
-              {proj.tags.map((tag) => (
-                <span key={tag} className="tech-tag">
-                  {tag}
-                </span>
-              ))}
-            </div>
+              <div className="project-tags-list">
+                {proj.tags.map((tag) => (
+                  <span key={tag} className="tech-tag">
+                    {tag}
+                  </span>
+                ))}
+              </div>
 
-            <div className="project-card-footer">
-              <a
-                href={proj.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-card-link demo-link"
-              >
-                <span>Live Demo / App</span>
-                <ExternalLink size={15} />
-              </a>
-
-              {proj.github ? (
+              <div className="project-card-footer">
                 <a
-                  href={proj.github}
+                  href={proj.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-card-link github-link"
-                  title="View Source Code"
+                  className="btn-card-link demo-link"
                 >
-                  <GithubIcon size={16} />
-                  <span>Code</span>
+                  <span>Live Demo / App</span>
+                  <ExternalLink size={15} />
                 </a>
-              ) : (
-                <span className="private-repo-badge" title="Proprietary client project">
-                  Private Code
-                </span>
-              )}
+
+                {proj.github ? (
+                  <a
+                    href={proj.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-card-link github-link"
+                    title="View Source Code"
+                  >
+                    <GithubIcon size={16} />
+                    <span>Code</span>
+                  </a>
+                ) : (
+                  <span className="private-repo-badge" title="Proprietary client project">
+                    Private Code
+                  </span>
+                )}
+              </div>
             </div>
-          </div>
+          </ScrollReveal>
         ))}
       </div>
 

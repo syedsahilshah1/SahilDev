@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Layout, Server, Database, Wrench, Layers } from "lucide-react";
+import ScrollReveal from "./ScrollReveal";
 import "./App.css";
 
 const skillCategories = [
@@ -59,15 +60,15 @@ const Skills = () => {
 
   return (
     <section id="skills" className="section-padding">
-      <div className="section-header">
+      <ScrollReveal direction="up" duration={0.6} className="section-header">
         <span className="section-subtitle-badge">Core Capabilities</span>
         <h2 className="section-title">Technical Expertise</h2>
         <p className="section-intro">
           Technologies and tools I leverage daily to engineer full-stack applications.
         </p>
-      </div>
+      </ScrollReveal>
 
-      <div className="skills-tabs-wrapper">
+      <ScrollReveal direction="up" duration={0.5} delay={0.1} className="skills-tabs-wrapper">
         <div className="skills-tabs">
           {skillCategories.map((cat) => (
             <button
@@ -80,17 +81,24 @@ const Skills = () => {
             </button>
           ))}
         </div>
-      </div>
+      </ScrollReveal>
 
       <div className="skills-grid-modern">
-        {filteredSkills.map((skill) => (
-          <div key={skill.name} className="skill-card-modern">
-            <div className="skill-card-header">
-              <span className="skill-emoji-icon">{skill.icon}</span>
-              <span className="skill-level-badge">{skill.level}</span>
+        {filteredSkills.map((skill, index) => (
+          <ScrollReveal
+            key={skill.name}
+            direction="zoom"
+            duration={0.4}
+            delay={0.05 * (index % 6)}
+          >
+            <div className="skill-card-modern">
+              <div className="skill-card-header">
+                <span className="skill-emoji-icon">{skill.icon}</span>
+                <span className="skill-level-badge">{skill.level}</span>
+              </div>
+              <h3 className="skill-card-name">{skill.name}</h3>
             </div>
-            <h3 className="skill-card-name">{skill.name}</h3>
-          </div>
+          </ScrollReveal>
         ))}
       </div>
     </section>

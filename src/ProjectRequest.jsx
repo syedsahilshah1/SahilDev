@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { db } from "./firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import emailjs from '@emailjs/browser';
+import ScrollReveal from "./ScrollReveal";
 import { 
   GraduationCap, 
   Rocket, 
@@ -160,15 +161,15 @@ const ProjectRequest = ({ preselectedType }) => {
 
   return (
     <section id="request-project" className="section-padding">
-      <div className="section-header">
+      <ScrollReveal direction="up" duration={0.6} className="section-header">
         <span className="section-subtitle-badge">Custom Engineering</span>
         <h2 className="section-title">Request a Project / Service</h2>
         <p className="section-intro">
           Describe your problem, select your criteria, and receive a customized quote and implementation timeline.
         </p>
-      </div>
+      </ScrollReveal>
 
-      <div className="request-container">
+      <ScrollReveal direction="zoom" duration={0.6} delay={0.1} className="request-container">
         {success ? (
           <div className="success-card">
             <div className="success-icon-box">
@@ -347,7 +348,7 @@ const ProjectRequest = ({ preselectedType }) => {
             </button>
           </form>
         )}
-      </div>
+      </ScrollReveal>
     </section>
   );
 };

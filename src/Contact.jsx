@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Mail, Phone, Send, Copy, Check, MapPin } from "lucide-react";
+import ScrollReveal from "./ScrollReveal";
 import "./App.css";
 
 const Contact = () => {
@@ -34,17 +35,17 @@ const Contact = () => {
 
   return (
     <section id="contact" className="section-padding">
-      <div className="section-header">
+      <ScrollReveal direction="up" duration={0.6} className="section-header">
         <span className="section-subtitle-badge">Get In Touch</span>
         <h2 className="section-title">Let's Work Together</h2>
         <p className="section-intro">
           Whether you have an open remote role, freelance project, or technical question, feel free to reach out!
         </p>
-      </div>
+      </ScrollReveal>
 
       <div className="contact-grid">
         {/* Contact Info Pills */}
-        <div className="contact-info-cards">
+        <ScrollReveal direction="left" duration={0.6} delay={0.1} className="contact-info-cards">
           <div className="contact-card">
             <div className="contact-card-icon">
               <Mail size={22} />
@@ -90,10 +91,10 @@ const Contact = () => {
               <span className="contact-val">Pakistan (Remote Worldwide)</span>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Contact Form */}
-        <div className="contact-form-wrapper">
+        <ScrollReveal direction="right" duration={0.6} delay={0.2} className="contact-form-wrapper">
           <form onSubmit={handleSubmit} className="contact-form-modern">
             <div className="form-group">
               <label htmlFor="name">Your Name</label>
@@ -133,7 +134,7 @@ const Contact = () => {
               <span>Send Email Message</span>
             </button>
           </form>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );
