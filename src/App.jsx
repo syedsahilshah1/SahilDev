@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
 import StarryBackground from "./StarryBackground";
 import VideoStatusPopup from "./VideoStatusPopup";
+import CustomCursor from "./CustomCursor";
 import Navbar from "./Navbar";
 import Hero from "./Hero";
 import About from "./About";
@@ -72,6 +73,7 @@ function App() {
   if (currentHash.startsWith("#admin")) {
     return (
       <div className="admin-wrapper-main">
+        <CustomCursor />
         <StarryBackground />
         <div className="admin-nav-header">
           <div className="admin-logo-text" onClick={() => window.location.hash = "#"}>
@@ -91,6 +93,7 @@ function App() {
 
   return (
     <div style={{ position: "relative", minHeight: "100vh" }}>
+      <CustomCursor />
       <StarryBackground />
       <motion.div
         style={{
@@ -122,4 +125,5 @@ function App() {
 }
 
 export default App;
+
 

@@ -29,10 +29,13 @@ const highlightCards = [
 const About = () => (
   <section id="about" className="section-padding">
     <ScrollReveal direction="up" duration={0.6} className="section-header">
-      <span className="section-subtitle-badge">Get To Know Me</span>
-      <h2 className="section-title">About Me</h2>
-      <p className="section-intro">
-        Passionate Software Engineer dedicated to crafting robust web applications that solve real-world problems.
+      <span className="section-subtitle-badge">ABOUT ME</span>
+      <h2 className="section-title" style={{ fontSize: "2.8rem", lineHeight: "1.15", letterSpacing: "-0.02em" }}>
+        Inspired by Great Design,<br />
+        <span className="hero-highlight">Fueled by Modern Tools</span>
+      </h2>
+      <p className="section-intro" style={{ maxWidth: "680px", margin: "1rem auto 0", fontSize: "1.05rem", color: "var(--text-muted)", lineHeight: "1.6" }}>
+        As a website developer and software engineer, I bridge the gap between how a site looks and how it performs — writing clean, maintainable code that brings a design to life without cutting corners.
       </p>
     </ScrollReveal>
 
