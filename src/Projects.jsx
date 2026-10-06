@@ -11,8 +11,29 @@ const GithubIcon = ({ size = 16 }) => (
 );
 
 const projectsData = [
+
   {
-    name: "SmartAI Travel Planner (FYP)",
+    name: "CRM for realEstate",
+    category: "Ai Automation and SAAS",
+    featured: true,
+    badge: "Automated closing machine",
+    description: "The most advanced automation machine in the world for closing real estate deals. It automates the entire sales pipeline, from lead generation to deal closing, also for inventry management system.",
+    tags: ["Next Js", "Typescript", "Tailwind CSS", "laravel", "AI", "AI Development", "AI Automation", "AI SAAS", "Real Estate", "Real Estate CRM", "Real Estate Automation", "Real Estate SAAS", "Automation", "SAAS", "AI Agent", "AI Automation Agent"],
+    link: "http://3.109.200.130/",
+    github: "Private Code"
+  },
+  {
+    name: "Faisal Hills Islamabad Portal",
+    category: "Full stack Website",
+    featured: true,
+    badge: "Real Estate",
+    description: "Faisal Hills is a real estate website for booking plots and getting information about the society.",
+    tags: ["Next Js", "Typescript", "Laravel", "Mysql"],
+    link: "https://faisalhillsislamabadfh.com/",
+    github: "Private Code"
+  },
+  {
+    name: "SmartAi Travel Planner",
     category: "ai",
     featured: true,
     badge: "Final Year Project",
@@ -218,7 +239,7 @@ const Projects = () => {
             className="project-search-input"
           />
           {searchQuery && (
-            <button 
+            <button
               className="clear-search-btn"
               onClick={() => setSearchQuery("")}
             >
@@ -305,7 +326,7 @@ const Projects = () => {
       {filteredProjects.length === 0 && (
         <div className="no-projects-found">
           <p>No projects match your filter search query "{searchQuery}".</p>
-          <button 
+          <button
             onClick={() => { setSelectedCategory("all"); setSearchQuery(""); }}
             className="btn-reset-filters"
           >
