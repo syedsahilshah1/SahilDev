@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
 import StarryBackground from "./StarryBackground";
 import VideoStatusPopup from "./VideoStatusPopup";
+
 import CustomCursor from "./CustomCursor";
 import Navbar from "./Navbar";
 import Hero from "./Hero";
