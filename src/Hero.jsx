@@ -102,19 +102,22 @@ const Hero = () => {
         <ScrollReveal direction="right" duration={0.6} delay={0.2} className="hero-visual-container">
           <div className="hero-image-frame">
             <div className="hero-image-blob">
-              <img
-                src="/sahil2.jpeg"
-                alt="Syed Sahil Shah - Founder of SyedDev Software Solutions"
-                width="459"
-                height="611"
-                loading="eager"
-                decoding="async"
-                fetchpriority="high"
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                  e.target.parentNode.classList.add('fallback-avatar');
-                }}
-              />
+              <picture>
+                <source srcSet="/sahil2.webp" type="image/webp" />
+                <img
+                  src="/sahil2.jpeg"
+                  alt="Syed Sahil Shah - Founder of SyedDev Software Solutions"
+                  width="459"
+                  height="611"
+                  loading="eager"
+                  decoding="async"
+                  fetchpriority="high"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    e.target.parentNode.parentNode.classList.add('fallback-avatar');
+                  }}
+                />
+              </picture>
             </div>
 
             <div className="floating-chip chip-1">

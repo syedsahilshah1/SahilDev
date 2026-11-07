@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "site_name": "SyedDev Software Solutions",
+  "site_url": "https://sahilportfol.netlify.app/",
+  "description": "Portfolio and service site for Syed Sahil Shah, founder of SyedDev Software Solutions. Full stack web developer specializing in React, Next.js, PHP, Laravel, and Firebase.",
+  "primary_language": "en",
+  "contact": {
+    "email": "sahilkhan536ah@gmail.com"
+  },
+  "owner": {
+    "name": "Syed Sahil Shah",
+    "role": "Founder & Lead Developer",
+    "organization": "SyedDev Software Solutions"
+  },
+  "resources": [
+    {
+      "url": "https://sahilportfol.netlify.app/",
+      "type": "homepage",
+      "description": "Main portfolio homepage"
+    },
+    {
+      "url": "https://sahilportfol.netlify.app/#projects",
+      "type": "section",
+      "description": "Portfolio projects"
+    },
+    {
+      "url": "https://sahilportfol.netlify.app/#services",
+      "type": "section",
+      "description": "Development services offered"
+    },
+    {
+      "url": "https://sahilportfol.netlify.app/#contact",
+      "type": "section",
+      "description": "Contact form"
+    },
+    {
+      "url": "https://sahilportfol.netlify.app/llms.txt",
+      "type": "llms-txt",
+      "description": "AI-readable site summary"
+    }
+  ],
+  "agents": {
+    "allowed": true,
+    "crawl_delay": 1,
+    "preferred_format": "llms-txt"
+  }
+}
+
