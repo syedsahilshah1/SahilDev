@@ -46,7 +46,7 @@ const About = () => (
           I am a <strong>BS Software Engineer</strong>, Full Stack Web Developer, and founder of <strong>SyedDev Software Solutions</strong>. I specialize in designing and engineering high-quality web applications, bridging modern frontend UI craftsmanship (React, Next.js, HTML5, CSS3) with robust backend systems (PHP, Laravel, MySQL, and Firebase).
         </p>
         <p className="bio-paragraph">
-          Through SyedDev Software Solutions, I deliver client platforms, custom administrative dashboards, student final year engineering projects, and AI-powered web tools focused on clean code, responsiveness, and top performance.
+          Through SyedDev Software Solutions, I deliver client platforms, custom administrative dashboards, student final year engineering projects, and AI-powered web tools focused on clean code, responsiveness, and top performance. Explore my <a href="#projects" style={{ color: "var(--accent, #818cf8)", textDecoration: "underline" }}>featured projects</a> or view available <a href="#services" style={{ color: "var(--accent, #818cf8)", textDecoration: "underline" }}>software development services</a>.
         </p>
         
         <div className="about-quick-tags">

@@ -58,7 +58,7 @@ const Services = ({ onSelectService }) => {
         <span className="section-subtitle-badge">SyedDev Software Solutions</span>
         <h2 className="section-title">Engineering & Development Services</h2>
         <p className="section-intro">
-          Full-cycle software engineering, custom web applications, and technical prototype solutions built to scale.
+          Full-cycle software engineering, custom web applications, and technical prototype solutions built to scale. Check my <a href="#projects" style={{ color: "#818cf8", textDecoration: "underline" }}>project case studies</a> or <a href="#contact" style={{ color: "#818cf8", textDecoration: "underline" }}>contact SyedDev directly</a>.
         </p>
       </ScrollReveal>
 

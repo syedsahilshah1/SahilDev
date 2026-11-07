@@ -35,7 +35,7 @@ const VideoStatusPopup = () => {
           <a href="#hire-me" className="video-popup-media-box" title="Go to CV & Hire Me Section">
             <img
               src="/sahil2.jpeg"
-              alt="Sahil Syed - Software Engineer"
+              alt="Syed Sahil Shah - SyedDev Software Solutions"
               className="video-popup-img"
             />
 
@@ -96,11 +96,11 @@ const VideoStatusPopup = () => {
           title="Click to view CV & Hire Me section"
         >
           <div className="minimized-avatar-wrapper">
-            <img src="/sahil2.jpeg" alt="Sahil Syed" className="minimized-avatar" />
+            <img src="/sahil2.jpeg" alt="Syed Sahil Shah - SyedDev Software Solutions" className="minimized-avatar" />
             <span className="minimized-status-dot"></span>
           </div>
           <div className="minimized-text-col">
-            <span className="minimized-title">Sahil Syed</span>
+            <span className="minimized-title">SyedDev Solutions</span>
             <span className="minimized-badge">⚡ Open to Work (CV)</span>
           </div>
           <div className="minimized-icon-box">

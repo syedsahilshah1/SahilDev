@@ -104,7 +104,7 @@ const Hero = () => {
             <div className="hero-image-blob">
               <img
                 src="/sahil2.jpeg"
-                alt="Sahil Syed - Software Engineer"
+                alt="Syed Sahil Shah - Founder of SyedDev Software Solutions"
                 onError={(e) => {
                   e.target.style.display = 'none';
                   e.target.parentNode.classList.add('fallback-avatar');
