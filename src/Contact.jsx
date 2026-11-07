@@ -36,10 +36,10 @@ const Contact = () => {
   return (
     <section id="contact" className="section-padding">
       <ScrollReveal direction="up" duration={0.6} className="section-header">
-        <span className="section-subtitle-badge">Get In Touch</span>
+        <span className="section-subtitle-badge">Contact SyedDev Solutions</span>
         <h2 className="section-title">Let's Work Together</h2>
         <p className="section-intro">
-          Whether you have an open remote role, freelance project, or technical question, feel free to reach out!
+          Contact SyedDev Software Solutions for custom web apps, remote software engineering, and project consultations.
         </p>
       </ScrollReveal>
 

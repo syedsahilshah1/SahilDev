@@ -55,10 +55,10 @@ const Services = ({ onSelectService }) => {
   return (
     <section id="services" className="section-padding">
       <ScrollReveal direction="up" duration={0.6} className="section-header">
-        <span className="section-subtitle-badge">Solutions & Offerings</span>
-        <h2 className="section-title">Development Services</h2>
+        <span className="section-subtitle-badge">SyedDev Software Solutions</span>
+        <h2 className="section-title">Engineering & Development Services</h2>
         <p className="section-intro">
-          Targeted software solutions engineered to bring technical ideas into functional reality.
+          Full-cycle software engineering, custom web applications, and technical prototype solutions built to scale.
         </p>
       </ScrollReveal>
 

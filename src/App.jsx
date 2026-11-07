@@ -77,7 +77,7 @@ function App() {
         <StarryBackground />
         <div className="admin-nav-header">
           <div className="admin-logo-text" onClick={() => window.location.hash = "#"}>
-            SAHILDEV ADMIN
+            SYEDDEV ADMIN
           </div>
           <button
             onClick={() => window.location.hash = "#"}

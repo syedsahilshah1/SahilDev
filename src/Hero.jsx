@@ -36,7 +36,7 @@ const Hero = () => {
         <ScrollReveal direction="left" duration={0.6} className="hero-text-content">
           <div className="status-badge">
             <span className="status-dot"></span>
-            <span>Open for Remote Roles & Internships</span>
+            <span>SyedDev Software Solutions &bull; Open for Projects & Roles</span>
           </div>
 
           <h1 className="hero-title">
@@ -44,16 +44,14 @@ const Hero = () => {
           </h1>
 
           <div className="hero-role-wrapper">
-            <span className="role-prefix">I build modern web apps as a</span>
+            <span className="role-prefix">Founder of SyedDev &</span>
             <div className="role-dynamic-text" key={roleIndex}>
               {roles[roleIndex]}
             </div>
           </div>
 
           <p className="hero-description">
-            BS Software Engineer with hands-on experience building high-performance,
-            full-stack web applications, scalable APIs, and intuitive user interfaces
-            using React, Next.js, Laravel, and Firebase.
+            BS Software Engineer and founder of <strong>SyedDev Software Solutions</strong>, delivering high-performance full-stack web applications, scalable APIs, and intuitive user interfaces using React, Next.js, Laravel, and Firebase.
           </p>
 
           <div className="hero-actions">

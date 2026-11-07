@@ -47,7 +47,7 @@ const Navbar = () => {
       <div className="nav-container">
         <a href="#home" className="logo" onClick={() => setOpen(false)}>
           <span className="logo-icon"><Sparkles size={20} /></span>
-          <span className="logo-text">SAHIL<span className="logo-accent">.DEV</span></span>
+          <span className="logo-text">SYED<span className="logo-accent">DEV</span></span>
         </a>
 
         <ul className={`nav-links ${open ? "active" : ""}`}>

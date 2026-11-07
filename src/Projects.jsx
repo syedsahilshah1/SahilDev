@@ -221,10 +221,10 @@ const Projects = () => {
   return (
     <section id="projects" className="section-padding">
       <ScrollReveal direction="up" duration={0.6} className="section-header">
-        <span className="section-subtitle-badge">Portfolio & Case Studies</span>
+        <span className="section-subtitle-badge">SyedDev Portfolio & Case Studies</span>
         <h2 className="section-title">Featured Engineering Work</h2>
         <p className="section-intro">
-          Explore production platforms, AI integrations, SaaS dashboards, and full-stack web applications.
+          Explore production platforms, AI integrations, and full-stack solutions engineered by SyedDev Software Solutions.
         </p>
       </ScrollReveal>
 

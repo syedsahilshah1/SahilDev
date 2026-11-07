@@ -26,8 +26,11 @@ const Footer = () => {
         </div>
 
         <div className="footer-giant-logo">
-          SAHIL<span>DEV</span>
+          SYED<span>DEV</span>
         </div>
+        <p style={{ textAlign: "center", color: "var(--text-muted)", fontSize: "0.85rem", marginTop: "0.75rem", letterSpacing: "0.04em" }}>
+          &copy; {new Date().getFullYear()} SyedDev Software Solutions. Engineered by Syed Sahil Shah.
+        </p>
       </div>
     </footer>
   );

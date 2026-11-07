@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sahilportfol.netlify.app/sitemap.xml
+
