@@ -4,9 +4,9 @@ import ScrollReveal from "./ScrollReveal";
 import "./App.css";
 
 const stats = [
-  { label: "Years Experience", value: "2+" },
-  { label: "Projects Completed", value: "20+" },
-  { label: "Live Client Platforms", value: "5+" },
+  { label: "Years Experience", value: "3+" },
+  { label: "Projects Completed", value: "47+" },
+  { label: "Live Client Platforms", value: "12+" },
   { label: "Tech Stack Mastery", value: "10+" },
 ];
 
