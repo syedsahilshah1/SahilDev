@@ -257,12 +257,12 @@ const ProjectRequest = ({ preselectedType }) => {
             {/* Step 3: Project Specifics */}
             <div className="form-row-two">
               <div className="form-group-step">
-                <label htmlFor="budget" className="step-label">
+                <label htmlFor="project-budget" className="step-label">
                   <span className="step-num-pill">Step 3</span>
                   <DollarSign size={16} className="inline-icon" /> Budget Range *
                 </label>
                 <select
-                  id="budget"
+                  id="project-budget"
                   value={formData.budget}
                   onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
                   className="form-select"
@@ -276,13 +276,13 @@ const ProjectRequest = ({ preselectedType }) => {
               </div>
 
               <div className="form-group-step">
-                <label htmlFor="deadline" className="step-label">
+                <label htmlFor="project-deadline" className="step-label">
                   <span className="step-num-pill">Step 4</span>
                   <Calendar size={16} className="inline-icon" /> Expected Deadline *
                 </label>
                 <input
                   type="date"
-                  id="deadline"
+                  id="project-deadline"
                   min={new Date().toISOString().split("T")[0]}
                   value={formData.deadline}
                   onChange={(e) => setFormData({ ...formData, deadline: e.target.value })}
@@ -294,12 +294,12 @@ const ProjectRequest = ({ preselectedType }) => {
 
             {/* Step 4: Description */}
             <div className="form-group-step">
-              <label htmlFor="description" className="step-label">
+              <label htmlFor="project-description" className="step-label">
                 <span className="step-num-pill">Step 5</span>
                 <FileText size={16} className="inline-icon" /> Describe your project requirements *
               </label>
               <textarea
-                id="description"
+                id="project-description"
                 rows="5"
                 placeholder="Provide details about the web application, target features, workflow, or specific problem you need solved..."
                 value={formData.description}
@@ -312,12 +312,12 @@ const ProjectRequest = ({ preselectedType }) => {
             {/* Step 5: User details */}
             <div className="form-row-two">
               <div className="form-group-step">
-                <label htmlFor="name" className="step-label">
+                <label htmlFor="project-name" className="step-label">
                   <User size={16} className="inline-icon" /> Full Name *
                 </label>
                 <input
                   type="text"
-                  id="name"
+                  id="project-name"
                   placeholder="John Doe"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -327,12 +327,12 @@ const ProjectRequest = ({ preselectedType }) => {
               </div>
 
               <div className="form-group-step">
-                <label htmlFor="email" className="step-label">
+                <label htmlFor="project-email" className="step-label">
                   <Mail size={16} className="inline-icon" /> Email Address *
                 </label>
                 <input
                   type="email"
-                  id="email"
+                  id="project-email"
                   placeholder="johndoe@example.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}

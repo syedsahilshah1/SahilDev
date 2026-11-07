@@ -97,10 +97,10 @@ const Contact = () => {
         <ScrollReveal direction="right" duration={0.6} delay={0.2} className="contact-form-wrapper">
           <form onSubmit={handleSubmit} className="contact-form-modern">
             <div className="form-group">
-              <label htmlFor="name">Your Name</label>
+              <label htmlFor="contact-name">Your Name</label>
               <input 
                 type="text" 
-                id="name" 
+                id="contact-name" 
                 name="name" 
                 placeholder="John Doe" 
                 required 
@@ -108,10 +108,10 @@ const Contact = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="email">Your Email</label>
+              <label htmlFor="contact-email">Your Email</label>
               <input 
                 type="email" 
-                id="email" 
+                id="contact-email" 
                 name="email" 
                 placeholder="john@example.com" 
                 required 
@@ -119,9 +119,9 @@ const Contact = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="message">Your Message</label>
+              <label htmlFor="contact-message">Your Message</label>
               <textarea 
-                id="message" 
+                id="contact-message" 
                 name="message" 
                 rows="4" 
                 placeholder="Hi Sahil, I am reaching out regarding..." 

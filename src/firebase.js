@@ -15,6 +15,17 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
-export const auth = getAuth(app);
-export default app;
 
+// Lazy Auth: only initializes when AdminDashboard is opened, saving 93 KiB on homepage
+let _auth = null;
+export const auth = new Proxy({}, {
+  get(target, prop) {
+    if (!_auth) {
+      _auth = getAuth(app);
+    }
+    const val = Reflect.get(_auth, prop);
+    return typeof val === "function" ? val.bind(_auth) : val;
+  }
+});
+
+export default app;

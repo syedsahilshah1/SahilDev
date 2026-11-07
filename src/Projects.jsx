@@ -296,6 +296,8 @@ const Projects = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-card-link demo-link"
+                  aria-label={`Live Demo of ${proj.name}`}
+                  title={`Live Demo of ${proj.name}`}
                 >
                   <span>Live Demo / App</span>
                   <ExternalLink size={15} />
@@ -307,7 +309,8 @@ const Projects = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-card-link github-link"
-                    title="View Source Code"
+                    aria-label={`View Source Code for ${proj.name}`}
+                    title={`View Source Code for ${proj.name}`}
                   >
                     <GithubIcon size={16} />
                     <span>Code</span>

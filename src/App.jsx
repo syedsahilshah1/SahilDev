@@ -15,8 +15,9 @@ import Experience from "./Experience";
 import HireMe from "./HireMe";
 import Contact from "./Contact";
 import Footer from "./Footer";
-import AdminDashboard from "./AdminDashboard";
 import "./App.css";
+
+const AdminDashboard = React.lazy(() => import("./AdminDashboard"));
 
 function App() {
   const [currentHash, setCurrentHash] = useState(window.location.hash);
@@ -86,7 +87,9 @@ function App() {
             ← Back to Portfolio
           </button>
         </div>
-        <AdminDashboard />
+        <React.Suspense fallback={<div style={{ color: "#fff", textAlign: "center", padding: "5rem" }}>Loading Admin Dashboard...</div>}>
+          <AdminDashboard />
+        </React.Suspense>
       </div>
     );
   }
@@ -109,15 +112,17 @@ function App() {
         }}
       />
       <Navbar />
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Services onSelectService={handleSelectService} />
-      <ProjectRequest preselectedType={selectedService} />
-      <Experience />
-      <HireMe />
-      <Contact />
+      <main id="main-content">
+        <Hero />
+        <About />
+        <Skills />
+        <Projects />
+        <Services onSelectService={handleSelectService} />
+        <ProjectRequest preselectedType={selectedService} />
+        <Experience />
+        <HireMe />
+        <Contact />
+      </main>
       <Footer />
       <VideoStatusPopup />
     </div>

@@ -55,7 +55,7 @@
 
     <!-- Google AdSense -->
     <meta name="google-adsense-account" content="ca-pub-1696284950890857" />
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1696284950890857" crossorigin="anonymous"></script>
+    <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1696284950890857" crossorigin="anonymous"></script>
 
     <!-- Structured Data (JSON-LD) for Google Search & Google Business Profile -->
     <script type="application/ld+json">
@@ -143,10 +143,18 @@
     }
     </script>
 
-    <!-- Fonts -->
+    <!-- Preconnect Origins -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://sahilclient-fef70.firebaseapp.com" crossorigin />
+    <link rel="preconnect" href="https://apis.google.com" crossorigin />
+
+    <!-- Non-Render-Blocking Google Fonts -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Montserrat:wght@400;700&display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Montserrat:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+    </noscript>
   </head>
   <body>
     <div id="root"></div>
