@@ -36,10 +36,10 @@ const Contact = () => {
   return (
     <section id="contact" className="section-padding">
       <ScrollReveal direction="up" duration={0.6} className="section-header">
-        <span className="section-subtitle-badge">Contact SyedDev Solutions</span>
-        <h2 className="section-title">Let's Work Together</h2>
+        <span className="section-subtitle-badge">Hire a Web Developer — SyedDev Pakistan</span>
+        <h2 className="section-title">Contact Us — Get a Free Quote</h2>
         <p className="section-intro">
-          Contact SyedDev Software Solutions for custom web apps, remote software engineering, and project consultations.
+          Looking to hire a full stack web developer in Pakistan? Contact SyedDev Software Solutions for custom web apps, React &amp; Laravel development, student FYP projects, enterprise dashboards, and remote software engineering. Free consultation.
         </p>
       </ScrollReveal>
 

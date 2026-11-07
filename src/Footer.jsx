@@ -21,12 +21,14 @@ const internalNavLinks = [
 ];
 
 const internalServiceLinks = [
-  { label: "Full-Stack Web Apps", href: "#services" },
-  { label: "React & Next.js Platforms", href: "#services" },
-  { label: "PHP & Laravel REST APIs", href: "#services" },
-  { label: "Student FYP Engineering", href: "#services" },
-  { label: "Enterprise Dashboards", href: "#services" },
-  { label: "Performance & DB Tuning", href: "#services" },
+  { label: "Full Stack Web Development", href: "#services" },
+  { label: "React & Next.js Developer for Hire", href: "#services" },
+  { label: "Laravel & PHP REST API Development", href: "#services" },
+  { label: "Student FYP Project Help Pakistan", href: "#services" },
+  { label: "Enterprise Dashboard Development", href: "#services" },
+  { label: "Website Speed & Performance Fix", href: "#services" },
+  { label: "Freelance Web Developer Pakistan", href: "#contact" },
+  { label: "Remote Software Engineer for Hire", href: "#contact" },
 ];
 
 const externalAuthorityLinks = [
@@ -84,7 +86,7 @@ const Footer = () => {
               SyedDev Solutions
             </h3>
             <p className="footer-col-desc">
-              SyedDev Software Solutions, engineered by Syed Sahil Shah. Building custom full-stack web applications, REST APIs, high-performance user interfaces, and technical student prototypes.
+              Hire a full stack web developer in Pakistan — SyedDev Software Solutions by Syed Sahil Shah. Custom React, Next.js &amp; Laravel web apps, REST APIs, student FYP projects, enterprise dashboards, and remote software engineering.
             </p>
             <div className="footer-col-meta">
               <span><MapPin size={14} style={{ display: "inline", marginRight: "4px" }} /> Pakistan & Remote Worldwide</span>

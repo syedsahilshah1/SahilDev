@@ -6,46 +6,49 @@ import "./App.css";
 const serviceTiers = [
   {
     id: "student",
-    title: "Academic & Student Projects",
+    title: "Academic & Student FYP Projects",
     icon: <GraduationCap size={28} className="service-tier-icon" />,
-    tagline: "FYP & Prototype Engineering",
-    description: "High-quality software development tailored for computer science students and research prototypes. Full architecture support for Final Year Projects.",
+    tagline: "Final Year Project & Prototype Engineering",
+    description: "Professional web-based Final Year Project (FYP) development for BS Computer Science, Software Engineering, and IT students. Full system design, source code, database schema, and documentation included.",
     features: [
       "Custom Web Applications (React, Next.js, Laravel, Firebase)",
-      "Clean, well-commented source code",
-      "Comprehensive setup & project walkthroughs",
-      "Budget-friendly student pricing",
-      "On-time delivery for tight evaluation deadlines"
+      "Complete FYP documentation & project reports",
+      "Clean, well-commented source code with deployment guide",
+      "Budget-friendly student pricing — affordable rates",
+      "On-time delivery for university evaluation deadlines",
+      "Database design (MySQL, Firebase Firestore)"
     ],
     badge: "Popular Service"
   },
   {
     id: "planned",
-    title: "Custom Full-Stack Solutions",
+    title: "Custom Full-Stack Web Development",
     icon: <Rocket size={28} className="service-tier-icon" />,
-    tagline: "Turnkey MVP & Web Apps",
-    description: "Tailor-made web applications engineered from scratch. From initial wireframes to production database schema and REST API setup.",
+    tagline: "Hire a Full Stack Web Developer — React, Laravel, Next.js",
+    description: "End-to-end custom web application development for startups, businesses, and entrepreneurs. From UI/UX wireframes to production deployment — React frontends, Laravel REST APIs, Firebase backends, and MySQL databases.",
     features: [
-      "Modern React / Next.js single page applications",
-      "RESTful API & authentication server architecture",
-      "Custom Enterprise Dashboards & POS systems",
-      "Real-time database and notification setup",
-      "Fully responsive cross-device layout design"
+      "Modern React / Next.js single page & server-side apps",
+      "RESTful API & JWT authentication server architecture",
+      "Custom Enterprise Dashboards, POS & inventory systems",
+      "Real-time Firebase database & push notifications",
+      "Fully responsive mobile-first cross-device design",
+      "E-commerce, SaaS platform & booking system development"
     ],
-    badge: "Next Gen"
+    badge: "Most Requested"
   },
   {
     id: "maintenance",
-    title: "App Refactoring & Optimization",
+    title: "Website Optimization & Refactoring",
     icon: <Wrench size={28} className="service-tier-icon" />,
-    tagline: "Code Care & Speed Upgrades",
-    description: "Keep your web applications fast, responsive, and secure. Performance tuning, code refactoring, database query optimization, and UI overhauls.",
+    tagline: "Speed Up, Fix Bugs & Modernize Your Website",
+    description: "Make your existing website fast, secure, and modern. Performance audits, code refactoring, database query optimization, bug fixes, UI redesigns, and framework upgrades for React, Laravel, WordPress, and PHP projects.",
     features: [
-      "Frontend performance & speed optimization",
-      "Bug fixes & framework upgrades",
-      "MySQL & Firebase database index tuning",
-      "API integrations & UI modernizations",
-      "Glassmorphic design updates & responsive fixes"
+      "PageSpeed & Core Web Vitals performance optimization",
+      "Bug fixes, security patches & framework upgrades",
+      "MySQL & Firebase Firestore query tuning",
+      "Third-party API integrations & payment gateways",
+      "Modern glassmorphic UI redesigns & responsive fixes",
+      "SEO technical fixes & Google Search Console setup"
     ],
     badge: "Premium Care"
   }
@@ -55,10 +58,10 @@ const Services = ({ onSelectService }) => {
   return (
     <section id="services" className="section-padding">
       <ScrollReveal direction="up" duration={0.6} className="section-header">
-        <span className="section-subtitle-badge">SyedDev Software Solutions</span>
-        <h2 className="section-title">Engineering & Development Services</h2>
+        <span className="section-subtitle-badge">Web Development Services — SyedDev Pakistan</span>
+        <h2 className="section-title">Full Stack Web Development Services</h2>
         <p className="section-intro">
-          Full-cycle software engineering, custom web applications, and technical prototype solutions built to scale. Check my <a href="#projects" style={{ color: "#818cf8", textDecoration: "underline" }}>project case studies</a> or <a href="#contact" style={{ color: "#818cf8", textDecoration: "underline" }}>contact SyedDev directly</a>.
+          Hire a full stack web developer in Pakistan — React, Next.js, Laravel, PHP &amp; Firebase. SyedDev Software Solutions delivers custom web apps, REST APIs, student FYP projects, and enterprise dashboards. See <a href="#projects" style={{ color: "#818cf8", textDecoration: "underline" }}>project portfolio</a> or <a href="#contact" style={{ color: "#818cf8", textDecoration: "underline" }}>get a free quote</a>.
         </p>
       </ScrollReveal>
 
