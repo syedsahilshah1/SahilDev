@@ -269,6 +269,10 @@
     </noscript>
   </head>
   <body>
+    <!-- SEO: Static H1 for crawlers that don't execute JS. React renders its own H1 on top. -->
+    <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">
+      Syed Sahil Shah — Full Stack Web Developer Pakistan | SyedDev Software Solutions
+    </h1>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
