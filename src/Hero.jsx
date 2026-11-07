@@ -105,6 +105,11 @@ const Hero = () => {
               <img
                 src="/sahil2.jpeg"
                 alt="Syed Sahil Shah - Founder of SyedDev Software Solutions"
+                width="459"
+                height="611"
+                loading="eager"
+                decoding="async"
+                fetchpriority="high"
                 onError={(e) => {
                   e.target.style.display = 'none';
                   e.target.parentNode.classList.add('fallback-avatar');

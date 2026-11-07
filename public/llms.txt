@@ -1,0 +1,28 @@
+# SyedDev Software Solutions
+
+> Custom software engineering by Syed Sahil Shah — Full Stack Developer, BS Software Engineer, and founder of SyedDev Software Solutions.
+
+## About
+
+Syed Sahil Shah is a full stack web developer and software engineer specializing in React, Next.js, PHP, Laravel, and Firebase. He builds high-performance web applications, scalable APIs, and intuitive user interfaces.
+
+## Links
+
+- [Home](https://sahilportfol.netlify.app/)
+- [Projects](https://sahilportfol.netlify.app/#projects)
+- [Services](https://sahilportfol.netlify.app/#services)
+- [About](https://sahilportfol.netlify.app/#about)
+- [Contact](https://sahilportfol.netlify.app/#contact)
+- [GitHub](https://github.com/syedsahilshah1)
+
+## Services
+
+- Full Stack Web Development (React, Next.js, PHP, Laravel)
+- Mobile-Responsive UI/UX Design
+- Firebase & Cloud Integration
+- REST API Development
+- Software Consulting
+
+## Contact
+
+Email: sahilkhan536ah@gmail.com
