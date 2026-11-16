@@ -7,12 +7,13 @@ import Navbar from "./Navbar";
 import Hero from "./Hero";
 import About from "./About";
 import Skills from "./Skills";
-
 import Projects from "./Projects";
 import Services from "./Services";
 import ProjectRequest from "./ProjectRequest";
 import Experience from "./Experience";
 import HireMe from "./HireMe";
+import Blog from "./Blog";
+import FAQ from "./FAQ";
 import Contact from "./Contact";
 import Footer from "./Footer";
 import "./App.css";
@@ -121,6 +122,8 @@ function App() {
         <ProjectRequest preselectedType={selectedService} />
         <Experience />
         <HireMe />
+        <Blog />
+        <FAQ />
         <Contact />
       </main>
       <Footer />

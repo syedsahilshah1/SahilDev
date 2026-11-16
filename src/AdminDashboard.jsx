@@ -7,7 +7,7 @@ import {
   onAuthStateChanged, 
   sendPasswordResetEmail 
 } from "firebase/auth";
-import { collection, query, orderBy, onSnapshot, updateDoc, doc } from "firebase/firestore";
+import { collection, query, orderBy, onSnapshot, updateDoc, doc, addDoc, deleteDoc, serverTimestamp } from "firebase/firestore";
 import { 
   Lock, 
   Mail, 
@@ -37,6 +37,9 @@ const AdminDashboard = () => {
   const [resetMessage, setResetMessage] = useState("");
   const [resetError, setResetError] = useState("");
 
+  // Active admin tab
+  const [activeTab, setActiveTab] = useState("orders");
+
   // Orders data
   const [orders, setOrders] = useState([]);
   const [ordersLoading, setOrdersLoading] = useState(true);
@@ -48,6 +51,18 @@ const AdminDashboard = () => {
   // Communication & reply state
   const [replyTexts, setReplyTexts] = useState({});
   const [activeReplyBox, setActiveReplyBox] = useState({});
+
+  // Blog state
+  const [blogs, setBlogs] = useState([]);
+  const [blogsLoading, setBlogsLoading] = useState(true);
+  const [blogForm, setBlogForm] = useState({ title: "", excerpt: "", content: "", tags: "", category: "", readTime: "5 min" });
+  const [blogSaving, setBlogSaving] = useState(false);
+
+  // FAQ state
+  const [faqs, setFaqs] = useState([]);
+  const [faqsLoading, setFaqsLoading] = useState(true);
+  const [faqForm, setFaqForm] = useState({ question: "", answer: "", category: "", order: 1 });
+  const [faqSaving, setFaqSaving] = useState(false);
 
   // Track auth state
   useEffect(() => {
@@ -85,6 +100,80 @@ const AdminDashboard = () => {
 
     return () => unsubscribe();
   }, [user]);
+
+  // Fetch blogs
+  useEffect(() => {
+    if (!user) return;
+    const q = query(collection(db, "blogs"), orderBy("createdAt", "desc"));
+    const unsub = onSnapshot(q, (snap) => {
+      setBlogs(snap.docs.map((d) => ({ id: d.id, ...d.data(), createdAt: d.data().createdAt?.toDate() || new Date() })));
+      setBlogsLoading(false);
+    }, () => setBlogsLoading(false));
+    return () => unsub();
+  }, [user]);
+
+  // Fetch FAQs
+  useEffect(() => {
+    if (!user) return;
+    const q = query(collection(db, "faqs"), orderBy("order", "asc"));
+    const unsub = onSnapshot(q, (snap) => {
+      setFaqs(snap.docs.map((d) => ({ id: d.id, ...d.data() })));
+      setFaqsLoading(false);
+    }, () => setFaqsLoading(false));
+    return () => unsub();
+  }, [user]);
+
+  // Blog CRUD
+  const handleAddBlog = async (e) => {
+    e.preventDefault();
+    if (!blogForm.title.trim() || !blogForm.excerpt.trim()) { alert("Title and excerpt required."); return; }
+    setBlogSaving(true);
+    try {
+      await addDoc(collection(db, "blogs"), {
+        ...blogForm,
+        tags: blogForm.tags.split(",").map((t) => t.trim()).filter(Boolean),
+        published: true,
+        createdAt: serverTimestamp(),
+      });
+      setBlogForm({ title: "", excerpt: "", content: "", tags: "", category: "", readTime: "5 min" });
+    } catch (err) { alert("Failed to save blog: " + err.message); }
+    finally { setBlogSaving(false); }
+  };
+
+  const handleDeleteBlog = async (id) => {
+    if (!window.confirm("Delete this blog post?")) return;
+    try { await deleteDoc(doc(db, "blogs", id)); } catch (err) { alert("Delete failed: " + err.message); }
+  };
+
+  const handleToggleBlogPublished = async (blog) => {
+    try { await updateDoc(doc(db, "blogs", blog.id), { published: !blog.published }); } catch (err) { alert("Update failed."); }
+  };
+
+  // FAQ CRUD
+  const handleAddFaq = async (e) => {
+    e.preventDefault();
+    if (!faqForm.question.trim() || !faqForm.answer.trim()) { alert("Question and answer required."); return; }
+    setFaqSaving(true);
+    try {
+      await addDoc(collection(db, "faqs"), {
+        ...faqForm,
+        order: Number(faqForm.order) || 1,
+        published: true,
+        createdAt: serverTimestamp(),
+      });
+      setFaqForm({ question: "", answer: "", category: "", order: 1 });
+    } catch (err) { alert("Failed to save FAQ: " + err.message); }
+    finally { setFaqSaving(false); }
+  };
+
+  const handleDeleteFaq = async (id) => {
+    if (!window.confirm("Delete this FAQ?")) return;
+    try { await deleteDoc(doc(db, "faqs", id)); } catch (err) { alert("Delete failed: " + err.message); }
+  };
+
+  const handleToggleFaqPublished = async (faq) => {
+    try { await updateDoc(doc(db, "faqs", faq.id), { published: !faq.published }); } catch (err) { alert("Update failed."); }
+  };
 
   const handleLogin = async (e) => {
     if (e) e.preventDefault();
@@ -360,6 +449,16 @@ const AdminDashboard = () => {
         </button>
       </div>
 
+      {/* Tab navigation */}
+      <div className="admin-tabs">
+        <button className={`admin-tab-btn${activeTab === "orders" ? " active" : ""}`} onClick={() => setActiveTab("orders")}>📦 Orders</button>
+        <button className={`admin-tab-btn${activeTab === "blog" ? " active" : ""}`} onClick={() => setActiveTab("blog")}>📝 Blog</button>
+        <button className={`admin-tab-btn${activeTab === "faqs" ? " active" : ""}`} onClick={() => setActiveTab("faqs")}>❓ FAQs</button>
+      </div>
+
+      {/* ═══ ORDERS TAB ═══ */}
+      {activeTab === "orders" && (<>
+
       <div className="dashboard-controls">
         <div className="control-group search-bar-wrapper">
           <Search size={18} className="search-icon" />
@@ -546,6 +645,132 @@ const AdminDashboard = () => {
           </div>
         </div>
       )}
+      </>)}
+
+      {/* ═══ BLOG TAB ═══ */}
+      {activeTab === "blog" && (
+        <div className="admin-tab-content">
+          <h3 style={{ marginBottom: "1.5rem", color: "var(--text-main)" }}>📝 Blog Management</h3>
+
+          {/* Add Blog Form */}
+          <form onSubmit={handleAddBlog} className="blog-form">
+            <h4 style={{ marginBottom: "1rem", color: "#818cf8" }}>Add New Blog Post</h4>
+            <div className="form-group">
+              <label>Title *</label>
+              <input className="form-input" value={blogForm.title} onChange={(e) => setBlogForm(p => ({ ...p, title: e.target.value }))} placeholder="e.g. Best Web Developer in Islamabad" required />
+            </div>
+            <div className="form-group">
+              <label>Excerpt *</label>
+              <input className="form-input" value={blogForm.excerpt} onChange={(e) => setBlogForm(p => ({ ...p, excerpt: e.target.value }))} placeholder="Short summary shown on card..." required />
+            </div>
+            <div className="form-group">
+              <label>Full Content</label>
+              <textarea className="form-textarea" rows={6} value={blogForm.content} onChange={(e) => setBlogForm(p => ({ ...p, content: e.target.value }))} placeholder="Full blog content (use line breaks for paragraphs)..." />
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "1rem" }}>
+              <div className="form-group">
+                <label>Tags (comma-separated)</label>
+                <input className="form-input" value={blogForm.tags} onChange={(e) => setBlogForm(p => ({ ...p, tags: e.target.value }))} placeholder="React, Islamabad, Web Dev" />
+              </div>
+              <div className="form-group">
+                <label>Category</label>
+                <input className="form-input" value={blogForm.category} onChange={(e) => setBlogForm(p => ({ ...p, category: e.target.value }))} placeholder="e.g. Tutorials" />
+              </div>
+              <div className="form-group">
+                <label>Read Time</label>
+                <input className="form-input" value={blogForm.readTime} onChange={(e) => setBlogForm(p => ({ ...p, readTime: e.target.value }))} placeholder="5 min" />
+              </div>
+            </div>
+            <button type="submit" disabled={blogSaving} className="btn-hero-primary" style={{ marginTop: "0.5rem" }}>
+              {blogSaving ? "Saving..." : "➕ Publish Blog Post"}
+            </button>
+          </form>
+
+          {/* Blog list */}
+          {blogsLoading ? <p style={{ color: "var(--text-muted)", marginTop: "2rem" }}>Loading blogs...</p> : blogs.length === 0 ? (
+            <p style={{ color: "var(--text-muted)", marginTop: "2rem" }}>No blog posts yet.</p>
+          ) : (
+            <div style={{ marginTop: "2rem", display: "flex", flexDirection: "column", gap: "1rem" }}>
+              {blogs.map((blog) => (
+                <div key={blog.id} className="admin-content-row">
+                  <div style={{ flex: 1 }}>
+                    <strong style={{ color: "var(--text-main)" }}>{blog.title}</strong>
+                    <p style={{ color: "var(--text-muted)", fontSize: "0.85rem", marginTop: "0.25rem" }}>{blog.excerpt}</p>
+                    <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginTop: "0.4rem" }}>
+                      {(blog.tags || []).map((t) => <span key={t} className="blog-tag-pill" style={{ fontSize: "0.75rem" }}>{t}</span>)}
+                    </div>
+                  </div>
+                  <div style={{ display: "flex", gap: "0.75rem", alignItems: "center", flexShrink: 0 }}>
+                    <label style={{ display: "flex", alignItems: "center", gap: "0.4rem", cursor: "pointer", color: "var(--text-muted)", fontSize: "0.85rem" }}>
+                      <input type="checkbox" checked={!!blog.published} onChange={() => handleToggleBlogPublished(blog)} />
+                      Published
+                    </label>
+                    <button onClick={() => handleDeleteBlog(blog.id)} className="btn-delete-admin" title="Delete">🗑️ Delete</button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* ═══ FAQs TAB ═══ */}
+      {activeTab === "faqs" && (
+        <div className="admin-tab-content">
+          <h3 style={{ marginBottom: "1.5rem", color: "var(--text-main)" }}>❓ FAQ Management</h3>
+
+          {/* Add FAQ Form */}
+          <form onSubmit={handleAddFaq} className="faq-form">
+            <h4 style={{ marginBottom: "1rem", color: "#818cf8" }}>Add New FAQ</h4>
+            <div className="form-group">
+              <label>Question *</label>
+              <input className="form-input" value={faqForm.question} onChange={(e) => setFaqForm(p => ({ ...p, question: e.target.value }))} placeholder="e.g. Who is the best web developer in Islamabad?" required />
+            </div>
+            <div className="form-group">
+              <label>Answer *</label>
+              <textarea className="form-textarea" rows={4} value={faqForm.answer} onChange={(e) => setFaqForm(p => ({ ...p, answer: e.target.value }))} placeholder="Provide a clear answer..." required />
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+              <div className="form-group">
+                <label>Category</label>
+                <input className="form-input" value={faqForm.category} onChange={(e) => setFaqForm(p => ({ ...p, category: e.target.value }))} placeholder="e.g. Services, Local, Pricing" />
+              </div>
+              <div className="form-group">
+                <label>Display Order</label>
+                <input type="number" className="form-input" value={faqForm.order} onChange={(e) => setFaqForm(p => ({ ...p, order: e.target.value }))} min={1} />
+              </div>
+            </div>
+            <button type="submit" disabled={faqSaving} className="btn-hero-primary" style={{ marginTop: "0.5rem" }}>
+              {faqSaving ? "Saving..." : "➕ Add FAQ"}
+            </button>
+          </form>
+
+          {/* FAQ list */}
+          {faqsLoading ? <p style={{ color: "var(--text-muted)", marginTop: "2rem" }}>Loading FAQs...</p> : faqs.length === 0 ? (
+            <p style={{ color: "var(--text-muted)", marginTop: "2rem" }}>No FAQs yet.</p>
+          ) : (
+            <div style={{ marginTop: "2rem", display: "flex", flexDirection: "column", gap: "1rem" }}>
+              {faqs.map((faq) => (
+                <div key={faq.id} className="admin-content-row">
+                  <div style={{ flex: 1 }}>
+                    <strong style={{ color: "var(--text-main)" }}>#{faq.order} — {faq.question}</strong>
+                    <p style={{ color: "var(--text-muted)", fontSize: "0.85rem", marginTop: "0.25rem" }}>{faq.answer}</p>
+                    {faq.category && <span className="blog-category-chip" style={{ fontSize: "0.75rem", marginTop: "0.4rem", display: "inline-block" }}>{faq.category}</span>}
+                  </div>
+                  <div style={{ display: "flex", gap: "0.75rem", alignItems: "center", flexShrink: 0 }}>
+                    <label style={{ display: "flex", alignItems: "center", gap: "0.4rem", cursor: "pointer", color: "var(--text-muted)", fontSize: "0.85rem" }}>
+                      <input type="checkbox" checked={!!faq.published} onChange={() => handleToggleFaqPublished(faq)} />
+                      Published
+                    </label>
+                    <button onClick={() => handleDeleteFaq(faq.id)} className="btn-delete-admin" title="Delete">🗑️ Delete</button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
     </section>
   );
 };
