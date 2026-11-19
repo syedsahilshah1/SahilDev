@@ -398,7 +398,7 @@ const AdminDashboard = () => {
                   type="email"
                   id="admin-email"
                   autoComplete="email"
-                  placeholder="sahilkhan536ah@gmail.com"
+                  placeholder="admin@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="form-input"
