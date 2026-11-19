@@ -346,10 +346,11 @@ const AdminDashboard = () => {
 
   if (authChecking) {
     return (
-      <section className="admin-login-section" style={{ minHeight: "calc(100vh - 80px)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <div style={{ textAlign: "center", color: "var(--text-muted)", zIndex: 2 }}>
-          <RefreshCw size={36} className="spinning-loader" style={{ margin: "0 auto 1rem" }} />
-          <p style={{ fontWeight: 600, color: "#ffffff" }}>Loading Admin Portal...</p>
+      <section className="admin-login-section">
+        <div className="admin-loading-card">
+          <RefreshCw size={36} className="spinning-loader" style={{ margin: "0 auto 1rem", color: "#818cf8" }} />
+          <p style={{ fontWeight: 600, color: "#ffffff", fontSize: "1.05rem" }}>Verifying Admin Session...</p>
+          <span style={{ fontSize: "0.85rem", color: "var(--text-muted)", marginTop: "0.4rem" }}>Connecting to secure portal</span>
         </div>
       </section>
     );
@@ -365,7 +366,9 @@ const AdminDashboard = () => {
                 <ShieldCheck size={32} />
               </div>
               <h2>Admin Control Portal</h2>
-              <p className="login-subtitle">Sign in or register your admin email to access the control panel</p>
+              <p className="login-subtitle">
+                Authorized management access for <strong>SyedDev Software Solutions</strong>. Sign in below.
+              </p>
             </div>
 
             <form onSubmit={handleLogin} className="login-form">
@@ -380,6 +383,7 @@ const AdminDashboard = () => {
                 <input
                   type="email"
                   id="admin-email"
+                  autoComplete="email"
                   placeholder="sahilkhan536ah@gmail.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -396,6 +400,7 @@ const AdminDashboard = () => {
                   <input
                     type={showPassword ? "text" : "password"}
                     id="admin-password"
+                    autoComplete="current-password"
                     placeholder="••••••••"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -407,6 +412,7 @@ const AdminDashboard = () => {
                     className="btn-toggle-password"
                     onClick={() => setShowPassword(!showPassword)}
                     title={showPassword ? "Hide password" : "Show password"}
+                    aria-label={showPassword ? "Hide password" : "Show password"}
                   >
                     {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                   </button>
@@ -415,7 +421,17 @@ const AdminDashboard = () => {
 
               <div className="auth-buttons-grid">
                 <button type="submit" disabled={loginLoading} className="btn-hero-primary login-btn">
-                  {loginLoading ? "Authenticating..." : "Sign In Admin"}
+                  {loginLoading ? (
+                    <>
+                      <RefreshCw size={16} className="spinning-loader" />
+                      <span>Authenticating...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Lock size={16} />
+                      <span>Sign In to Dashboard</span>
+                    </>
+                  )}
                 </button>
               </div>
 
@@ -425,7 +441,7 @@ const AdminDashboard = () => {
                   <span>Forgot Password? Send Reset Email</span>
                 </button>
                 <p className="security-note">
-                  💡 If you already created an account but forgot your password, click above to send a reset link to your email.
+                  🔒 Password recovery instructions will be dispatched to your registered admin inbox.
                 </p>
               </div>
             </form>

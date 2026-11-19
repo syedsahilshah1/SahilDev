@@ -75,22 +75,30 @@ function App() {
   if (currentHash.startsWith("#admin")) {
     return (
       <div className="admin-wrapper-main">
-        <CustomCursor />
         <StarryBackground />
-        <div className="admin-nav-header">
-          <div className="admin-logo-text" onClick={() => window.location.hash = "#"}>
-            SYEDDEV ADMIN
+        <header className="admin-nav-header">
+          <div className="admin-logo-text" onClick={() => (window.location.hash = "#")}>
+            SYED<span>DEV</span> ADMIN
           </div>
           <button
-            onClick={() => window.location.hash = "#"}
+            onClick={() => (window.location.hash = "#")}
             className="btn-admin-back"
           >
             ← Back to Portfolio
           </button>
-        </div>
-        <React.Suspense fallback={<div style={{ color: "#fff", textAlign: "center", padding: "5rem" }}>Loading Admin Dashboard...</div>}>
-          <AdminDashboard />
-        </React.Suspense>
+        </header>
+        <main className="admin-main-container">
+          <React.Suspense
+            fallback={
+              <div className="admin-loading-fallback">
+                <div className="admin-spinner"></div>
+                <p>Loading Admin Dashboard...</p>
+              </div>
+            }
+          >
+            <AdminDashboard />
+          </React.Suspense>
+        </main>
       </div>
     );
   }
