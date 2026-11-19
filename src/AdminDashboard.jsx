@@ -22,7 +22,20 @@ import {
   Copy, 
   RefreshCw, 
   KeyRound,
-  UserPlus
+  UserPlus,
+  LayoutDashboard,
+  Inbox,
+  FileText,
+  HelpCircle,
+  ExternalLink,
+  ChevronRight,
+  Menu,
+  X,
+  PlusCircle,
+  Trash2,
+  CheckCircle2,
+  Clock,
+  Sparkles
 } from "lucide-react";
 import "./App.css";
 
@@ -39,6 +52,7 @@ const AdminDashboard = () => {
 
   // Active admin tab
   const [activeTab, setActiveTab] = useState("orders");
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   // Orders data
   const [orders, setOrders] = useState([]);
@@ -451,29 +465,188 @@ const AdminDashboard = () => {
     );
   }
 
+  const pendingOrdersCount = orders.filter(o => o.status === "Pending").length;
+  const inProgressOrdersCount = orders.filter(o => o.status === "In Progress").length;
+  const completedOrdersCount = orders.filter(o => o.status === "Completed").length;
+
   return (
-    <section className="admin-dashboard-section">
-      <div className="dashboard-header">
-        <div>
-          <span className="section-subtitle-badge">Management System</span>
-          <h2>Service Control Center</h2>
-          <p className="admin-user-email">Logged in as: <strong>{user.email}</strong></p>
+    <div className="admin-layout-container">
+      {/* Mobile Top Navbar */}
+      <div className="admin-mobile-topbar">
+        <button 
+          className="admin-hamburger-btn"
+          onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
+          aria-label="Toggle Navigation"
+        >
+          {mobileSidebarOpen ? <X size={22} /> : <Menu size={22} />}
+        </button>
+        <div className="admin-mobile-brand">
+          <ShieldCheck size={20} className="brand-accent" />
+          <span>SYED<span>DEV</span> ADMIN</span>
         </div>
-        <button onClick={handleLogout} className="btn-logout">
+        <button onClick={handleLogout} className="btn-logout-mini" title="Sign Out">
           <LogOut size={16} />
-          <span>Sign Out</span>
         </button>
       </div>
 
-      {/* Tab navigation */}
-      <div className="admin-tabs">
-        <button className={`admin-tab-btn${activeTab === "orders" ? " active" : ""}`} onClick={() => setActiveTab("orders")}>📦 Orders</button>
-        <button className={`admin-tab-btn${activeTab === "blog" ? " active" : ""}`} onClick={() => setActiveTab("blog")}>📝 Blog</button>
-        <button className={`admin-tab-btn${activeTab === "faqs" ? " active" : ""}`} onClick={() => setActiveTab("faqs")}>❓ FAQs</button>
-      </div>
+      {/* Sidebar Overlay for Mobile */}
+      {mobileSidebarOpen && (
+        <div 
+          className="admin-sidebar-overlay"
+          onClick={() => setMobileSidebarOpen(false)}
+        />
+      )}
 
-      {/* ═══ ORDERS TAB ═══ */}
-      {activeTab === "orders" && (<>
+      {/* Modern Sidebar */}
+      <aside className={`admin-sidebar ${mobileSidebarOpen ? "open" : ""}`}>
+        <div className="admin-sidebar-header">
+          <div className="admin-sidebar-brand" onClick={() => (window.location.hash = "#")}>
+            <div className="brand-icon-box">
+              <ShieldCheck size={22} />
+            </div>
+            <div className="brand-text">
+              <h3>SYED<span>DEV</span></h3>
+              <p>Control Center</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="admin-user-profile-widget">
+          <div className="user-avatar-circle">
+            {user.email ? user.email.charAt(0).toUpperCase() : "A"}
+          </div>
+          <div className="user-profile-info">
+            <span className="user-badge">Super Admin</span>
+            <p className="user-email-text" title={user.email}>{user.email}</p>
+          </div>
+        </div>
+
+        <nav className="admin-sidebar-nav">
+          <div className="sidebar-section-label">MANAGEMENT</div>
+          <button 
+            className={`admin-nav-item ${activeTab === "orders" ? "active" : ""}`}
+            onClick={() => { setActiveTab("orders"); setMobileSidebarOpen(false); }}
+          >
+            <Inbox size={18} />
+            <span>Service Orders</span>
+            {orders.length > 0 && (
+              <span className="nav-item-badge">{orders.length}</span>
+            )}
+          </button>
+
+          <button 
+            className={`admin-nav-item ${activeTab === "blog" ? "active" : ""}`}
+            onClick={() => { setActiveTab("blog"); setMobileSidebarOpen(false); }}
+          >
+            <FileText size={18} />
+            <span>Blog Articles</span>
+            {blogs.length > 0 && (
+              <span className="nav-item-badge neutral">{blogs.length}</span>
+            )}
+          </button>
+
+          <button 
+            className={`admin-nav-item ${activeTab === "faqs" ? "active" : ""}`}
+            onClick={() => { setActiveTab("faqs"); setMobileSidebarOpen(false); }}
+          >
+            <HelpCircle size={18} />
+            <span>FAQs & Q/A</span>
+            {faqs.length > 0 && (
+              <span className="nav-item-badge neutral">{faqs.length}</span>
+            )}
+          </button>
+
+          <div className="sidebar-section-label" style={{ marginTop: "1.5rem" }}>QUICK ACTIONS</div>
+          <a 
+            href="#" 
+            onClick={(e) => { e.preventDefault(); window.location.hash = "#"; }} 
+            className="admin-nav-item external"
+          >
+            <ExternalLink size={17} />
+            <span>View Live Website</span>
+          </a>
+        </nav>
+
+        <div className="admin-sidebar-footer">
+          <button onClick={handleLogout} className="btn-sidebar-logout">
+            <LogOut size={17} />
+            <span>Sign Out</span>
+          </button>
+        </div>
+      </aside>
+
+      {/* Main Content Area */}
+      <main className="admin-content-area">
+        {/* Top Breadcrumb & Quick Bar */}
+        <div className="admin-topbar-breadcrumb">
+          <div className="breadcrumb-left">
+            <span className="breadcrumb-root">Dashboard</span>
+            <ChevronRight size={14} className="breadcrumb-sep" />
+            <span className="breadcrumb-current">
+              {activeTab === "orders" ? "Service Requests" : activeTab === "blog" ? "Blog Management" : "FAQ Management"}
+            </span>
+          </div>
+
+          <div className="topbar-right-actions">
+            <div className="live-status-pill">
+              <span className="pulse-dot"></span>
+              <span>Firestore Live</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Dynamic Metric Counter Strip */}
+        <div className="admin-metrics-strip">
+          <div className="metric-card" onClick={() => { setActiveTab("orders"); setFilterStatus("all"); }}>
+            <div className="metric-icon orders">
+              <Inbox size={20} />
+            </div>
+            <div className="metric-data">
+              <span className="metric-label">Total Requests</span>
+              <span className="metric-number">{orders.length}</span>
+            </div>
+          </div>
+
+          <div className="metric-card" onClick={() => { setActiveTab("orders"); setFilterStatus("Pending"); }}>
+            <div className="metric-icon pending">
+              <Clock size={20} />
+            </div>
+            <div className="metric-data">
+              <span className="metric-label">Pending Review</span>
+              <span className="metric-number">{pendingOrdersCount}</span>
+            </div>
+          </div>
+
+          <div className="metric-card" onClick={() => { setActiveTab("orders"); setFilterStatus("Completed"); }}>
+            <div className="metric-icon completed">
+              <CheckCircle2 size={20} />
+            </div>
+            <div className="metric-data">
+              <span className="metric-label">Completed</span>
+              <span className="metric-number">{completedOrdersCount}</span>
+            </div>
+          </div>
+
+          <div className="metric-card" onClick={() => setActiveTab("blog")}>
+            <div className="metric-icon blog">
+              <FileText size={20} />
+            </div>
+            <div className="metric-data">
+              <span className="metric-label">Published Articles</span>
+              <span className="metric-number">{blogs.length}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* ═══ ORDERS TAB ═══ */}
+        {activeTab === "orders" && (
+          <div className="admin-view-wrapper">
+            <div className="view-header-row">
+              <div>
+                <h2>Incoming Service Requests</h2>
+                <p>Filter, search, review problem statements and directly reply to clients.</p>
+              </div>
+            </div>
 
       <div className="dashboard-controls">
         <div className="control-group search-bar-wrapper">
@@ -661,15 +834,21 @@ const AdminDashboard = () => {
           </div>
         </div>
       )}
-      </>)}
+      </div>
+      )}
 
       {/* ═══ BLOG TAB ═══ */}
       {activeTab === "blog" && (
-        <div className="admin-tab-content">
-          <h3 style={{ marginBottom: "1.5rem", color: "var(--text-main)" }}>📝 Blog Management</h3>
+        <div className="admin-view-wrapper">
+          <div className="view-header-row">
+            <div>
+              <h2>Blog Article Management</h2>
+              <p>Publish technical articles and local SEO guides to rank on Google in Islamabad & Rawalpindi.</p>
+            </div>
+          </div>
 
           {/* Add Blog Form */}
-          <form onSubmit={handleAddBlog} className="blog-form">
+          <form onSubmit={handleAddBlog} className="blog-form modern-glass-card">
             <h4 style={{ marginBottom: "1rem", color: "#818cf8" }}>Add New Blog Post</h4>
             <div className="form-group">
               <label>Title *</label>
@@ -732,11 +911,16 @@ const AdminDashboard = () => {
 
       {/* ═══ FAQs TAB ═══ */}
       {activeTab === "faqs" && (
-        <div className="admin-tab-content">
-          <h3 style={{ marginBottom: "1.5rem", color: "var(--text-main)" }}>❓ FAQ Management</h3>
+        <div className="admin-view-wrapper">
+          <div className="view-header-row">
+            <div>
+              <h2>Frequently Asked Questions</h2>
+              <p>Add and manage client FAQs displayed in the public FAQ accordion and Google schema markup.</p>
+            </div>
+          </div>
 
           {/* Add FAQ Form */}
-          <form onSubmit={handleAddFaq} className="faq-form">
+          <form onSubmit={handleAddFaq} className="faq-form modern-glass-card">
             <h4 style={{ marginBottom: "1rem", color: "#818cf8" }}>Add New FAQ</h4>
             <div className="form-group">
               <label>Question *</label>
@@ -786,8 +970,8 @@ const AdminDashboard = () => {
           )}
         </div>
       )}
-
-    </section>
+      </main>
+    </div>
   );
 };
 
